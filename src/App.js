@@ -9,7 +9,6 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    console.log('bitch');
     axios({
       url: "http://localhost:8000/marvel", 
       method: "GET",
