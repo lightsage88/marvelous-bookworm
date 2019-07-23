@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import {createGlobalStyle} from 'styled-components';
+import styled from 'styled-components';
 import './App.css';
 import Landing from './components/Landing';
 import Account from './components/Account';
@@ -13,13 +13,15 @@ import Head from './components/Head';
 import Foot from './components/Foot';
 import axios from 'axios';
 
-const MarvelFont = createGlobalStyle`
- body {
-    font-family: "Marvel", sans-serif;
-    @import: url('./assets/fonts/Bebas-Regular.ttf') format('ttf');
- }
-  
-`
+
+
+const AppFooter = styled.footer`
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: -webkit-fill-available;
+
+`;
 
 
 const App = () => {
@@ -53,7 +55,9 @@ const App = () => {
       <Route path="/search" component={Search} />
 
 
-      <Foot />
+      <AppFooter className="footer mt-auto py-3">
+        This is a footer
+      </AppFooter>
       </div>
     </Router>
   );

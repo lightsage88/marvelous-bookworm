@@ -17,6 +17,7 @@ const Brand = styled.span`
 
     font-family: "Marvel", sans-serif;
     border:solid white;
+    background: red;
 
 
 `;
@@ -37,7 +38,7 @@ class Head extends React.Component {
     render() {
     return (
         <div>
-        <Navbar color="light" light expand="md">
+        <Navbar color="dark" dark expand="md">
           <NavbarBrand href="/">
             <Brand>Marvelous Bookworm</Brand>
           </NavbarBrand>
