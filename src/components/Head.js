@@ -61,11 +61,9 @@ class Head extends React.Component {
                   
                    <React.Fragment>
                    <NavItem>
-                      <NavLink className="nav-link" to="/search">Search</NavLink>
+                      <NavLink className="nav-link" to="/home">Home</NavLink>
                     </NavItem>
-                    <NavItem>
-                      <NavLink className="nav-link" to="/collection">Collection</NavLink>
-                    </NavItem>
+                    
                     <NavItem>
                       <NavLink className="nav-link" to="/account">Account</NavLink>
                     </NavItem>
