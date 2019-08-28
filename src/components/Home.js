@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
+import { Container, Row, Col, Card, CardBody, CardImg } from "shards-react";
 
 const languages = [
   {
@@ -45,25 +45,7 @@ class Home extends Component {
 
   typingTimer = null;
 
-  // componentDidMount = () => {
-  //   axios({
-  //     url: "http://localhost:8000/marvel", 
-  //     method: "GET",
-  //     headers: {
-  //       "accept" : 'application/json'
-  //     }
-  //   })
-  //   .then(response => {
-  //     console.log(response);
-  //   })
-  //   .catch(err => {
-  //     console.error(err);
-  //   })
-  // }
-  // onChange = (e) => {
-  //   let value = e.target.value;
-  //   this.handleTypingChange(value);
-  // } 
+ 
 
   onChange = (e) => {
     console.log(e.target);
@@ -73,20 +55,41 @@ class Home extends Component {
     this.setState({
       value
     });
+    this.handleTypingChange(e);
+  
   }
 
   handleTypingChange = (e) => {
+    console.log('handling typing change like ab oxx');
     console.log(e.target.value);
     let value = e.target.value;
     clearTimeout(this.typingTimer);
-    this.typingTimer = setTimeout(()=>{this.doCharacterSearch(value)}, 250);
+    this.typingTimer = setTimeout(()=>{this.doCharacterSearch(value)}, 450);
   }
 
   doCharacterSearch = (value) => {
+    console.log('we are doing the character serach');
     this.setState({
       value
     });
-    
+    axios({
+      url: 'http://localhost:8000/api/characters/search',
+      method: "POST",
+      headers: {
+        "accept" : 'application/json'
+      },
+      data: {
+        query: value
+      }
+    })
+    .then(response => {
+      console.log(response);
+      this.putSelectionsInStateSuggestions(response.data);
+    })
+    .catch(err => {
+      console.error(err);
+    })
+   
   }
 
   onSuggestionsFetchRequested = (x) => {
@@ -95,6 +98,14 @@ class Home extends Component {
  
   onSuggestionsClearRequested = (y) => {
     console.log('sleepy');
+  }
+
+  putSelectionsInStateSuggestions(array) {
+    array.forEach(object => {
+      this.setState(prevState =>({
+        suggestions: [...prevState.suggestions, object]
+      }))
+    })
   }
 
   render () {
@@ -107,21 +118,28 @@ class Home extends Component {
    
     const {value, suggestions} = this.state;
 
-    // const onChange = (e) => {
-    //   console.log(this.state);
-    //   console.log(e.target.value);
-    //   // this.setState(prevState=>({
-    //   //   value: e.target.value
-    //   // }))
-    //   this.setState({
-    //     value: e.target.value
-    //   })
-    // } 
     const inputProps = {
       placeholder: 'Type a Marvel Character',
       value,
       onChange: this.onChange
     }
+
+    const suggestionDeck = this.state.suggestions;
+    const suggestionCards = suggestionDeck.map((item, index)=>
+   
+        <Card className="suggestionCards" key={index} style={{
+          background: `linear-gradient(
+      rgba(0, 0, 0, 0.3), 
+      rgba(0, 0, 0, 0.3)
+    ),
+          url(${item.thumbnail.path}.${item.thumbnail.extension}) no-repeat center`
+          
+          }}>
+          <h2 className="suggestionCardsH2">{item.name}</h2>
+        </Card>
+      
+
+    );
 
   
     
@@ -129,14 +147,9 @@ class Home extends Component {
     return (
       <div>
         <h2>Home Component</h2>
-        <Autosuggest 
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-          inputProps={inputProps}
-        />
+        <input type='text' onChange={(e)=>{this.onChange(e)}} />
+        
+        {suggestionCards}
       </div>
     )
   }
