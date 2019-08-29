@@ -40,7 +40,8 @@ const renderSuggestion = suggestion => (
 class Home extends Component {
   state = {
     value: '',
-    suggestions: []
+    suggestions: [],
+    message: ''
   }
 
   typingTimer = null;
@@ -57,6 +58,54 @@ class Home extends Component {
     });
     this.handleTypingChange(e);
   
+  }
+
+  onClick = (index) => {
+    console.log('you clicked a marvel card!');
+    //We will click this, and then the User will have the information from the react-state for that character
+    //pushed into the approrpiate model in our MongoDB.
+
+    console.log(index);
+
+    console.log(this.state.suggestions[index]);
+
+    axios({
+      url: 'http://localhost:8000/api/users/addCharacter',
+      method: 'POST',
+      headers: {
+        "accept": 'application/json'
+      },
+      data: {
+        characterObject: this.state.suggestions[index]
+      }
+    })
+    .then(response => { 
+      this.handleCharacterAddResponse(response);
+      console.log(response);
+      
+
+    })
+    .catch(err => {
+      console.error(err);
+      console.log(err.message);
+      console.log(err);
+      
+      
+    });
+  }
+
+  handleCharacterAddResponse = (response) => {
+    console.log('hcar running');
+    if(response.data.code == 422) {
+      this.setState(prevState=> ({
+        message: response.data.message
+      }));
+
+    } else {
+      this.setState(prevState=> ({
+        message: "Character Added!"
+      }));
+    }
   }
 
   handleTypingChange = (e) => {
@@ -127,13 +176,9 @@ class Home extends Component {
     const suggestionDeck = this.state.suggestions;
     const suggestionCards = suggestionDeck.map((item, index)=>
    
-        <Card className="suggestionCards" key={index} style={{
-          background: `linear-gradient(
-      rgba(0, 0, 0, 0.3), 
-      rgba(0, 0, 0, 0.3)
-    ),
+        <Card onClick={()=>{this.onClick(index)}} data-key={index} className="suggestionCards" key={index} style={{
+          background: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
           url(${item.thumbnail.path}.${item.thumbnail.extension}) no-repeat center`
-          
           }}>
           <h2 className="suggestionCardsH2">{item.name}</h2>
         </Card>

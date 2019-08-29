@@ -5,14 +5,22 @@
 /*TODO: get this ruleset immediatebelow to scss or something*/
 .suggestionCards {
   background-size: cover !important;
-  width: 60vw;
-  height: 30vw;
+    width: 60vw;
+    height: 30vw;
+    margin: 8vw auto;
+    box-shadow: black 0vw 1vw 1vw;
+}
+
+.suggestionCards:active {
+  box-shadow: none;
+  transform: translateY(5px);
 }
 
 .suggestionCardsH2 {
   margin: auto;
   color:whitesmoke;
   text-shadow: .1vw .4vw black;
+  pointer-events:none;
 }
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
