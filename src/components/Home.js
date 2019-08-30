@@ -49,12 +49,14 @@ class Home extends Component {
  
 
   onChange = (e) => {
+
     console.log(e.target);
     console.log('hi');
     let value = e.target.value;
     console.log(value);
     this.setState({
-      value
+      value,
+      suggestions: []
     });
     this.handleTypingChange(e);
   
@@ -81,30 +83,61 @@ class Home extends Component {
     })
     .then(response => { 
       this.handleCharacterAddResponse(response);
-      console.log(response);
-      
-
     })
     .catch(err => {
       console.error(err);
-      console.log(err.message);
+      console.log(err.error);
       console.log(err);
       
       
     });
   }
 
+  waitForTapToCloseMessage = () => {
+    console.log('tapp tapp');
+  }
+
   handleCharacterAddResponse = (response) => {
+    let homeComponentDiv = document.getElementById('homeComponentDiv');
+    let homeComponentMessage = document.getElementById('homeComponentMessage');
     console.log('hcar running');
     if(response.data.code == 422) {
       this.setState(prevState=> ({
         message: response.data.message
       }));
 
+      homeComponentMessage.classList.add('homeComponentMessageFailure');
+
+      setTimeout(()=>{
+      console.log('hottudoggo');
+      this.setState(prevState=> ({
+        message: ''
+      }));
+      // homeComponentDiv.classList.remove('homeComponentDivBlur');
+
+      homeComponentMessage.classList.remove('homeComponentMessageFailure');
+
+      }, 2000)
+
+
     } else {
       this.setState(prevState=> ({
         message: "Character Added!"
       }));
+     
+      // homeComponentDiv.classList.add('homeComponentDivBlur');
+      homeComponentMessage.classList.add('homeComponentMessageSuccess');
+
+      setTimeout(()=>{
+      console.log('hanbaga');
+      this.setState(prevState=> ({
+        message: ''
+      }));
+      // homeComponentDiv.classList.remove('homeComponentDivBlur');
+
+      homeComponentMessage.classList.remove('homeComponentMessageSuccess');
+
+      }, 2000)
     }
   }
 
@@ -174,6 +207,7 @@ class Home extends Component {
     }
 
     const suggestionDeck = this.state.suggestions;
+
     const suggestionCards = suggestionDeck.map((item, index)=>
    
         <Card onClick={()=>{this.onClick(index)}} data-key={index} className="suggestionCards" key={index} style={{
@@ -186,12 +220,14 @@ class Home extends Component {
 
     );
 
+
   
     
 
     return (
-      <div>
+      <div id="homeComponentDiv">
         <h2>Home Component</h2>
+        <h1 id="homeComponentMessage">{this.state.message}</h1>
         <input type='text' onChange={(e)=>{this.onChange(e)}} />
         
         {suggestionCards}
