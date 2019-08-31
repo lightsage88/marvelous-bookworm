@@ -63,6 +63,10 @@ class Head extends React.Component {
                    <NavItem>
                       <NavLink className="nav-link" to="/home">Home</NavLink>
                     </NavItem>
+
+                    <NavItem>
+                      <NavLink className="nav-link" to="/collection">Collection</NavLink>
+                    </NavItem>
                     
                     <NavItem>
                       <NavLink className="nav-link" to="/account">Account</NavLink>

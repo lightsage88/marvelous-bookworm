@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import './App.css';
 import Landing from './components/Landing';
 import Account from './components/Account';
+import Collection from './components/Collection';
 import About from './components/About';
 import Home from './components/Home';
 import Signup from './components/Signup';
@@ -33,6 +34,7 @@ const App = () => {
       <Head />
       <Route exact path="/" component={Landing} /> 
       <Route path="/about" component={About} />
+      <Route path="/collection" component={Collection} />
       <Route path="/home" component={Home} />
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
