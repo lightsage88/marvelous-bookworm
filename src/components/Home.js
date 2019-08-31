@@ -18,11 +18,7 @@ class Home extends Component {
  
 
   onChange = (e) => {
-
-    console.log(e.target);
-    console.log('hi');
     let value = e.target.value;
-    console.log(value);
     this.setState({
       value,
       suggestions: []
@@ -135,7 +131,8 @@ class Home extends Component {
     })
     .then(response => {
       console.log(response);
-      this.putSelectionsInStateSuggestions(response.data);
+      let data = response.data;
+      this.putSelectionsInStateSuggestions(data);
     })
     .catch(err => {
       console.error(err);
@@ -143,15 +140,8 @@ class Home extends Component {
    
   }
 
-  onSuggestionsFetchRequested = (x) => {
-    console.log('hi there');
-  }
- 
-  onSuggestionsClearRequested = (y) => {
-    console.log('sleepy');
-  }
-
-  putSelectionsInStateSuggestions(array) {
+  
+  putSelectionsInStateSuggestions = (array) => {
     array.forEach(object => {
       this.setState(prevState =>({
         suggestions: [...prevState.suggestions, object]
