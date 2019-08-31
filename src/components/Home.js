@@ -2,38 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card, CardBody, CardImg } from "shards-react";
 
-const languages = [
-  {
-    name: 'C',
-    year: 1972
-  },
-  {
-    name: 'Elm',
-    year: 2012
-  }
-];
 
-// Teach Autosuggest how to calculate suggestions for any given input value.
-const getSuggestions = value => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-
-  return inputLength === 0 ? [] : languages.filter(lang =>
-    lang.name.toLowerCase().slice(0, inputLength) === inputValue
-  );
-};
-
-// When suggestion is clicked, Autosuggest needs to populate the input
-// based on the clicked suggestion. Teach Autosuggest how to calculate the
-// input value for every given suggestion.
-const getSuggestionValue = suggestion => suggestion.name;
-
-// Use your imagination to render suggestions.
-const renderSuggestion = suggestion => (
-  <div>
-    {suggestion.name}
-  </div>
-);
 
 
 
@@ -228,7 +197,7 @@ class Home extends Component {
       <div id="homeComponentDiv">
         <h2>Home Component</h2>
         <h1 id="homeComponentMessage">{this.state.message}</h1>
-        <input type='text' onChange={(e)=>{this.onChange(e)}} />
+        <input id="homeComponentInput" type='text' onChange={(e)=>{this.onChange(e)}} />
         
         {suggestionCards}
       </div>

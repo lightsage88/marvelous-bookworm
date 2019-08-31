@@ -1,0 +1,12 @@
+import React from 'react';
+import {shallow, mount} from 'enzyme';
+
+import Login from './Login';
+
+describe('<Login/>', ()=>{
+    it('Renders w/o crashing', ()=> {
+        shallow(<Login/>);
+    });
+
+    
+});
