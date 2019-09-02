@@ -1,3 +1,5 @@
+import {API_BASE_URL} from '../config';
+
 
 export const ADD_LIST = 'ADD_LIST';
 export const addList = title => ({
@@ -11,3 +13,7 @@ export const addCard = (text, listIndex) => ({
     text,
     listIndex
 });
+
+// export const fetchUserCollection = () => dispatch => {
+//     fetch(`${API_BASE_URL}/api/${userId}`)
+// }

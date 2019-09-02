@@ -1,21 +1,13 @@
 import * as actions from '../actions';
 
 const initialState = {
-    lists: [{
-        title: 'Example list 1',
-        cards: [{
-            text: 'Example card 1'
-        }, {
-            text: 'Example card 2'
-        }]
-    }, {
-        title: 'Example list 2',
-        cards: [{
-            text: 'Example card 1'
-        }, {
-            text: 'Example card 2'
-        }]
-    }]
+
+    user : {
+        firstName: '',
+        lastName: '',
+        username: '',
+        loggedIn: false,
+    }
 };
 
 export const bookwormReducer = (state=initialState, action) => {

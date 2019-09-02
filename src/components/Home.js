@@ -78,7 +78,6 @@ class Home extends Component {
       this.setState(prevState=> ({
         message: ''
       }));
-      // homeComponentDiv.classList.remove('homeComponentDivBlur');
 
       homeComponentMessage.classList.remove('homeComponentMessageFailure');
 
