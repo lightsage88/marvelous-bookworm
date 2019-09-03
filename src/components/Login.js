@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import axios from 'axios';
 
+import {attemptLogIn, attemptLoginSuccess} from '../actions/index.js';
 
-class  Login extends Component {
+
+class Login extends Component {
     state={
         usernameFieldText: '',
         passwordFieldText: '',
@@ -23,38 +26,45 @@ class  Login extends Component {
             this.setState(prevState =>({
                 passwordFieldText: fieldContent
             }))
-        }
+        } 
     }
 
     clickSubmit = (e) => {
+        let usernameChars, passwordChars;
+        usernameChars = this.state.usernameFieldText;
+        passwordChars = this.state.passwordFieldText;
+
         e.preventDefault();
         console.log('yo');
-        axios({
-            url: `http://localhost:8000/api/auth/login`,
-            method: "POST",
-            headers: {
-                "accept": 'application/json'
-            },
-            data: {
+       this.props.dispatch(attemptLogIn());
+        // axios({
+        //     url: `http://localhost:8000/api/auth/login`,
+        //     method: "POST",
+        //     headers: {
+        //         "accept": 'application/json'
+        //     },
+        //     data: {
                
-                    "username": this.state.usernameFieldText,
-                    "password": this.state.passwordFieldText
+        //             "username": this.state.usernameFieldText,
+        //             "password": this.state.passwordFieldText
                 
-            }
-        })
-        .then(response => {
-            console.log('sup bitches');
-            console.log(response);
-        })
-        .catch(err => {
-            console.log(err);
-            this.setState(prevState => ({
-                message: "There was an error of some kind."
-            }))
-        })
+        //     }
+        // })
+        // .then(response => {
+        //     console.log('sup bitches');
+        //     console.log(response);
+        //     //Do something to update ReduxState
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        //     this.setState(prevState => ({
+        //         message: "There was an error of some kind."
+        //     }))
+        // })
     }
 
     render () {
+        console.log(this.props);
         return (
             <React.Fragment>
                 <form>
@@ -68,4 +78,8 @@ class  Login extends Component {
    
 }
 
-export default Login;
+const mapStateToProps = state => ({
+    user:state.username
+});
+
+export default connect(mapStateToProps)(Login);

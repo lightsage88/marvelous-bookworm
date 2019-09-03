@@ -18,6 +18,11 @@ export const bookwormReducer = (state=initialState, action) => {
                 cards: []
             }]
         });
+    } 
+    else if (action.type === actions.ATTEMPT_LOGIN_SUCCESS) {
+        return Object.assign({}, state, {
+            username:'KING BOCHO'
+        });
     }
     else if (action.type === actions.ADD_CARD) {
         let lists = state.lists.map((list, index) => {
