@@ -5,7 +5,7 @@ import axios from 'axios';
 import {attemptLogIn, attemptLoginSuccess} from '../actions/index.js';
 
 
-class Login extends Component {
+export class Login extends Component {
     state={
         usernameFieldText: '',
         passwordFieldText: '',
@@ -36,31 +36,8 @@ class Login extends Component {
 
         e.preventDefault();
         console.log('yo');
-       this.props.dispatch(attemptLogIn());
-        // axios({
-        //     url: `http://localhost:8000/api/auth/login`,
-        //     method: "POST",
-        //     headers: {
-        //         "accept": 'application/json'
-        //     },
-        //     data: {
-               
-        //             "username": this.state.usernameFieldText,
-        //             "password": this.state.passwordFieldText
-                
-        //     }
-        // })
-        // .then(response => {
-        //     console.log('sup bitches');
-        //     console.log(response);
-        //     //Do something to update ReduxState
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        //     this.setState(prevState => ({
-        //         message: "There was an error of some kind."
-        //     }))
-        // })
+        this.props.dispatch(attemptLogIn(usernameChars, passwordChars));
+        
     }
 
     render () {
@@ -79,7 +56,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-    user:state.username
+    user:state.user.username || null,
+    loggedIn: state.user.loggedIn || null
 });
 
 export default connect(mapStateToProps)(Login);

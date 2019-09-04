@@ -6,6 +6,8 @@ const initialState = {
         firstName: '',
         lastName: '',
         username: '',
+        books: [],
+        characters: [],
         loggedIn: false,
     }
 };
@@ -22,7 +24,13 @@ export const bookwormReducer = (state=initialState, action) => {
     else if (action.type === actions.ATTEMPT_LOGIN_SUCCESS) {
         return Object.assign({}, state, {
           user: {...state.user,
-                username: "King Bocho"
+                authToken: action.data.authToken,
+                firstName: action.data.user.firstName,
+                books: action.data.user.books,
+                characters: action.data.user.characters,
+                lastName: action.data.user.lastName,
+                username: action.data.user.username,
+                loggedIn: true
             }
         });
     }

@@ -28,13 +28,9 @@ class Home extends Component {
   }
 
   onClick = (index) => {
-    console.log('you clicked a marvel card!');
     //We will click this, and then the User will have the information from the react-state for that character
     //pushed into the approrpiate model in our MongoDB.
 
-    console.log(index);
-
-    console.log(this.state.suggestions[index]);
 
     axios({
       url: 'http://localhost:8000/api/users/addCharacter',
@@ -106,8 +102,7 @@ class Home extends Component {
   }
 
   handleTypingChange = (e) => {
-    console.log('handling typing change like ab oxx');
-    console.log(e.target.value);
+
     let value = e.target.value;
     clearTimeout(this.typingTimer);
     this.typingTimer = setTimeout(()=>{this.doCharacterSearch(value)}, 450);
@@ -129,7 +124,6 @@ class Home extends Component {
       }
     })
     .then(response => {
-      console.log(response);
       let data = response.data;
       this.putSelectionsInStateSuggestions(data);
     })

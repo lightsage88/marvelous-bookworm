@@ -75,7 +75,7 @@ class Head extends React.Component {
                       <NavLink className="nav-link" to="/about">About</NavLink>
                     </NavItem>
                     <NavItem>
-                      <a className="nav-link" href=''>Log Out</a>
+                      <a className="nav-link" href='' id="logoutAnchor" onClick={()=>this.attemptLogOut()}>Log Out</a>
                     </NavItem>
                     </React.Fragment>
                   
