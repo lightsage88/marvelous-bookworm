@@ -21,7 +21,9 @@ export const bookwormReducer = (state=initialState, action) => {
     } 
     else if (action.type === actions.ATTEMPT_LOGIN_SUCCESS) {
         return Object.assign({}, state, {
-            username:'KING BOCHO'
+          user: {...state.user,
+                username: "King Bocho"
+            }
         });
     }
     else if (action.type === actions.ADD_CARD) {
