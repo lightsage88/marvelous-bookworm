@@ -57,7 +57,8 @@ export class Login extends Component {
 
 const mapStateToProps = state => ({
     user:state.user.username || null,
-    loggedIn: state.user.loggedIn || null
+    loggedIn: state.user.loggedIn || null,
+    authToken: state.user.authToken
 });
 
 export default connect(mapStateToProps)(Login);

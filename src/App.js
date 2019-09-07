@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {maintainState} from './actions';
 import styled from 'styled-components';
 import './App.css';
 import Landing from './components/Landing';
 import Account from './components/Account';
 import Collection from './components/Collection';
 import About from './components/About';
-import Home from './components/Home';
+import Search from './components/Search';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Head from './components/Head';
@@ -24,9 +26,10 @@ const AppFooter = styled.footer`
 `;
 
 
-const App = () => {
-  
 
+export const App = (props) => {
+  
+  
   
   return (
     <Router>
@@ -35,7 +38,7 @@ const App = () => {
       <Route exact path="/" component={Landing} /> 
       <Route path="/about" component={About} />
       <Route path="/collection" component={Collection} />
-      <Route path="/home" component={Home} />
+      <Route path="/search" component={Search} />
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
       <Route path="/account" component={Account} />
@@ -50,4 +53,8 @@ const App = () => {
   
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  ...state
+})
+
+export default connect(mapStateToProps)(App);

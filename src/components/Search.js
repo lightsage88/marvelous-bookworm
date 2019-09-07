@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import axios from 'axios';
 import { Container, Row, Col, Card, CardBody, CardImg } from "shards-react";
+import {refreshStateWithToken} from '../actions';
 
 
 
 
-
-class Home extends Component {
+export class Search extends Component {
   state = {
     value: '',
     suggestions: [],
@@ -44,6 +45,8 @@ class Home extends Component {
     })
     .then(response => { 
       this.handleCharacterAddResponse(response);
+      console.log(this.props);
+      this.props.dispatch(refreshStateWithToken(localStorage.getItem('authToken')));
     })
     .catch(err => {
       console.error(err);
@@ -145,7 +148,7 @@ class Home extends Component {
   render () {
 
     
-  
+  console.log(this.props);
 
    
   
@@ -188,4 +191,10 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+  username: state.user.username || '',
+  characters: state.user.characters || []
+
+})
+
+export default connect(mapStateToProps)(Search);

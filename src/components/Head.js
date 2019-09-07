@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {connect} from 'react-redux';
 import marvelLogo from '../assets/pictures/marvelLogo.jpg';
 import {  Collapse,
     Navbar,
@@ -12,6 +13,7 @@ import {  Collapse,
     DropdownMenu,
     DropdownItem } from 'reactstrap';
 import {NavLink} from 'react-router-dom'
+import {attemptLogout} from '../actions';
 
 const Brand = styled.span`
 
@@ -23,10 +25,19 @@ const Brand = styled.span`
 `;
 
 
-class Head extends React.Component {
+export class Head extends React.Component {
     state = {
         isOpen: false,
-        isLoggedIn: true
+        loggedIn: false
+    }
+
+    componentDidUpdate(prevProps) {
+      console.log(this.props);
+      if(this.props.loggedIn !== prevProps.loggedIn) {
+        this.setState(prevState=>({
+          loggedIn: this.props.loggedIn
+        }))
+      }
     }
 
     toggle = () => {
@@ -35,17 +46,25 @@ class Head extends React.Component {
         });
       }
 
+    attemptLogOut = (e) => {
+      e.preventDefault();
+      this.props.dispatch(attemptLogout());
+    }
+
     render() {
+      
     return (
         <div>
         <Navbar color="dark" dark expand="md">
-          <NavbarBrand href="/">
+          <NavLink to="/">
+          <NavbarBrand>
             <Brand>Marvelous Bookworm</Brand>
           </NavbarBrand>
+          </NavLink>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-                {!this.state.isLoggedIn ? (
+                {this.state.loggedIn == false ? (
                   
                     <React.Fragment>
                     <NavItem>
@@ -61,7 +80,7 @@ class Head extends React.Component {
                   
                    <React.Fragment>
                    <NavItem>
-                      <NavLink className="nav-link" to="/home">Home</NavLink>
+                      <NavLink className="nav-link" to="/search">Search</NavLink>
                     </NavItem>
 
                     <NavItem>
@@ -75,7 +94,7 @@ class Head extends React.Component {
                       <NavLink className="nav-link" to="/about">About</NavLink>
                     </NavItem>
                     <NavItem>
-                      <a className="nav-link" href='' id="logoutAnchor" onClick={()=>this.attemptLogOut()}>Log Out</a>
+                      <a className="nav-link" href='' id="logoutAnchor" onClick={(e)=>this.attemptLogOut(e)}>Log Out</a>
                     </NavItem>
                     </React.Fragment>
                   
@@ -91,4 +110,10 @@ class Head extends React.Component {
     }
 }
 
-export default Head;
+const mapStateToProps = state => ({
+  username: state.user.username,
+  loggedIn: state.user.loggedIn || false
+});
+
+export default connect(mapStateToProps)(Head);
+

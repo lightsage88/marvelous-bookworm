@@ -34,6 +34,19 @@ export const bookwormReducer = (state=initialState, action) => {
             }
         });
     }
+    else if (action.type === actions.REFRESH_STATE) {
+        return Object.assign({}, state, {
+            user: {...state.user,
+                characters: action.data.characters
+            }
+        });
+    }
+    else if (action.type === actions.ATTEMPT_LOGOUT) {
+        return Object.assign({}, state, initialState )
+    }
+    else if (action.type === actions.MAINTAIN_STATE) {
+        return state;
+    }
     else if (action.type === actions.ADD_CARD) {
         let lists = state.lists.map((list, index) => {
             if (index !== action.listIndex) {

@@ -3,16 +3,16 @@ import {shallow, mount} from 'enzyme';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-import Home from './Home';
+import {Search} from './Search';
 import { doesNotReject } from 'assert';
 
-describe('<Home/>', ()=>{
+describe('<Search/>', ()=>{
     it('Renders w/o crashing', ()=> {
-        shallow(<Home/>);
+        shallow(<Search/>);
     });
 
     it('Fires the onChange function when text is entered in the input, which sets new state values based on the inputs value', ()=>{
-        const wrapper = mount(<Home/>);
+        const wrapper = mount(<Search/>);
         const onChangeSpy = jest.spyOn(wrapper.instance(), "onChange");
         wrapper.find('input[type="text"]').simulate('change', {target: {value: 'Spider-Man'}});
         wrapper.update();
@@ -22,7 +22,7 @@ describe('<Home/>', ()=>{
     });
 
     it('does the above, and then also fires "handleTypingChange"', ()=>{
-        const wrapper = mount(<Home/>);
+        const wrapper = mount(<Search/>);
         const handleTypingChangeSpy = jest.spyOn(wrapper.instance(), "handleTypingChange");
         wrapper.find('input[type="text"]').simulate('change', {target: {value: 'Spider-Man'}});
         wrapper.update();
@@ -30,7 +30,7 @@ describe('<Home/>', ()=>{
     });
 
     it('makes a POST request to our API so that the Marvel API can be hit', ()=> {
-        const wrapper = mount(<Home />);
+        const wrapper = mount(<Search />);
         const doCharacterSearchSpy = jest.spyOn(wrapper.instance(), "doCharacterSearch");
         const putSelectionsInStateSuggestions = jest.mock();
         const oSpy = jest.spyOn(wrapper.instance(), "putSelectionsInStateSuggestions");
@@ -60,7 +60,7 @@ describe('<Home/>', ()=>{
     });
 
     it('fills up the states suggestion space with results', ()=> {
-        const wrapper = mount(<Home/>);
+        const wrapper = mount(<Search/>);
         const data = [{id: 1009610, name: "Spider-Man", description: "Bitten by a radioactive spider, high school studen…pidey has vowed to use his powers to help people.", modified: "2019-02-06T18:06:19-0500", thumbnail: {extension: "jpg", path:"lala.com"}}, 
         {id: 1011054, name: "Spider-Man (1602)", description: "", modified: "2014-03-05T13:47:38-0500", thumbnail: {extension: "jpg", path:"lala.com"}},
         {id: 1014873, name: "Spider-Man (2099)", description: "", modified: "2013-08-15T14:16:16-0400", thumbnail: {extension: "jpg", path:"lala.com"}},
