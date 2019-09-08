@@ -13,7 +13,7 @@ import {  Collapse,
     DropdownMenu,
     DropdownItem } from 'reactstrap';
 import {NavLink} from 'react-router-dom'
-import {attemptLogout} from '../actions';
+import {attemptLogout, refreshStateWithToken} from '../actions';
 
 const Brand = styled.span`
 
@@ -29,6 +29,25 @@ export class Head extends React.Component {
     state = {
         isOpen: false,
         loggedIn: false
+    }
+
+    
+
+    componentDidMount() {
+      let authToken;
+      if(localStorage.getItem('authToken')) {
+        authToken = localStorage.getItem('authToken');
+        
+        this.props.dispatch(refreshStateWithToken(authToken));
+        this.setState(prevState =>({
+          loggedIn: true
+        }))
+      } else {
+        this.setState(prevState =>({
+          loggedIn: false
+        }))
+        console.log('goloso');
+      }
     }
 
     componentDidUpdate(prevProps) {
@@ -49,10 +68,11 @@ export class Head extends React.Component {
     attemptLogOut = (e) => {
       e.preventDefault();
       this.props.dispatch(attemptLogout());
+      localStorage.clear();
     }
 
     render() {
-      
+     
     return (
         <div>
         <Navbar color="dark" dark expand="md">

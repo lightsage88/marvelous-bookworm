@@ -36,7 +36,7 @@ export const bookwormReducer = (state=initialState, action) => {
     }
     else if (action.type === actions.REFRESH_STATE) {
         return Object.assign({}, state, {
-            user: {...state.user,
+            user: {...action.data,
                 characters: action.data.characters
             }
         });
