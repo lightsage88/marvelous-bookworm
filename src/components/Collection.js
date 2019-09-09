@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Media, Card} from 'reactstrap';
+import { Card, Button, CardHeader, CardFooter, CardBody,
+    CardTitle, CardText, UncontrolledCollapse } from 'reactstrap';
 
 class Collection extends Component {
     state = {
@@ -16,6 +17,12 @@ class Collection extends Component {
 
     render() {
         console.log(this.props);
+
+        // const characterEvents = (this.props.characters).map((character, index)=>{
+        //     //in here we set up stuff to go intot he uncontrolled collapse for each one...this could be itneresting
+        // })
+
+
         const charactersInCollection = (this.props.characters).map((character, index) => {
             console.log(character.image.data)
             var base64Flag = 'data:image/jpeg;base64,';
@@ -23,8 +30,18 @@ class Collection extends Component {
 
 
             return <Card key={index}>
+            <CardHeader>{character.name}</CardHeader>
             <img src={base64Flag + imageStr} />
-                        {character.description || 'N/A'}
+
+            <CardBody>
+                <CardText>
+                    {character.description || 'N/A'}
+                </CardText>
+                <Button id="toggler">EVENTS</Button>    
+            </CardBody>
+            <UncontrolledCollapse toggler="#toggler">
+                <p>this is where we should have the names of the events, an image for the event, and a year, then a link to amazon.</p>
+            </UncontrolledCollapse>
                    </Card>
         }) 
         return (

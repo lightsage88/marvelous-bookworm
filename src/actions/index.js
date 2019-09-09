@@ -44,6 +44,13 @@ export const refreshState = (data) => ({
     data
 })
 
+export const ADD_EVENTS_TO_CHARACTER = 'ADD_EVENTS_TO_CHARACTER';
+export const addEventsToCharacter = (charID, payload) => ({
+    type: ADD_EVENTS_TO_CHARACTER,
+    charID,
+    payload
+});
+
 
 
 export const attemptLogIn = (username, password) => dispatch => {
@@ -89,4 +96,26 @@ export const refreshStateWithToken = (token) => dispatch => {
         console.error(err);
     });
     
+}
+
+export const comicEventHydration = (charID) => dispatch => {
+    console.log('comiceventhydration running');
+    axios({
+        url: `${API_BASE_URL}/api/characters/events`,
+        method: "POST",
+        headers: {
+            "accept": "application/json"
+        },
+        data: {
+            charID
+        }
+    })
+    .then(response => {
+        console.log(response);
+        console.log('samoan breeze');
+        dispatch(addEventsToCharacter(charID, response.data))
+    })
+    .catch(err => {
+        console.error(err);
+    })
 }

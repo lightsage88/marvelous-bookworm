@@ -47,6 +47,26 @@ export const bookwormReducer = (state=initialState, action) => {
     else if (action.type === actions.MAINTAIN_STATE) {
         return state;
     }
+    else if(action.type === actions.ADD_EVENTS_TO_CHARACTER) {
+        console.log('gogogogogogo');
+        console.log(String(action.charID))
+        let newCharacterArray = state.user.characters;
+        console.log(newCharacterArray);
+        let eventFilledData = action.payload;
+        console.log(eventFilledData);
+        newCharacterArray.forEach(char => {
+            if(char.id == action.charID) {
+                char.events = action.payload
+            }
+        })
+
+        return Object.assign({}, state, {
+            user: {...state.user,
+                characters: newCharacterArray
+            }
+        })
+
+    }
     else if (action.type === actions.ADD_CARD) {
         let lists = state.lists.map((list, index) => {
             if (index !== action.listIndex) {

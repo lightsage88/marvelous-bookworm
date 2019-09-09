@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import { Container, Row, Col, Card, CardBody, CardImg } from "shards-react";
-import {refreshStateWithToken} from '../actions';
+import {refreshStateWithToken, comicEventHydration} from '../actions';
 
 
 
@@ -32,6 +32,8 @@ export class Search extends Component {
     //We will click this, and then the User will have the information from the react-state for that character
     //pushed into the approrpiate model in our MongoDB.
 
+    //This should be an action/reducer type thing...a thunk. 
+    //Then we need to piggyback something so we can do an event hydration activity
 
     axios({
       url: 'http://localhost:8000/api/users/addCharacter',
@@ -44,7 +46,9 @@ export class Search extends Component {
       }
     })
     .then(response => { 
-      this.handleCharacterAddResponse(response);
+      console.log(this.state.suggestions[index]);
+      this.handleCharacterAddResponse(response, index);
+      // this.comicEvent
       console.log(this.props);
       this.props.dispatch(refreshStateWithToken(localStorage.getItem('authToken')));
     })
@@ -61,7 +65,7 @@ export class Search extends Component {
     console.log('tapp tapp');
   }
 
-  handleCharacterAddResponse = (response) => {
+  handleCharacterAddResponse = (response, index) => {
     let homeComponentDiv = document.getElementById('homeComponentDiv');
     let homeComponentMessage = document.getElementById('homeComponentMessage');
     console.log('hcar running');
@@ -87,6 +91,11 @@ export class Search extends Component {
       this.setState(prevState=> ({
         message: "Character Added!"
       }));
+      console.log(this.state.suggestions[index]);
+      console.log(this.state.suggestions[index].id);
+      this.props.dispatch(comicEventHydration(this.state.suggestions[index].id))
+
+
      
       // homeComponentDiv.classList.add('homeComponentDivBlur');
       homeComponentMessage.classList.add('homeComponentMessageSuccess');
@@ -105,7 +114,7 @@ export class Search extends Component {
   }
 
   handleTypingChange = (e) => {
-
+//todo: Make int a thunk type thing
     let value = e.target.value;
     clearTimeout(this.typingTimer);
     this.typingTimer = setTimeout(()=>{this.doCharacterSearch(value)}, 450);
