@@ -1,18 +1,7 @@
 import {API_BASE_URL} from '../config';
 import axios from 'axios'
 
-export const ADD_LIST = 'ADD_LIST';
-export const addList = title => ({
-    type: ADD_LIST,
-    title
-});
 
-export const ADD_CARD = 'ADD_CARD';
-export const addCard = (text, listIndex) => ({
-    type: ADD_CARD,
-    text,
-    listIndex
-});
 
 export const UPDATE_STATE = 'UPDATE_STATE';
 export const updateState = (newStateValues) => ({
@@ -44,12 +33,13 @@ export const refreshState = (data) => ({
     data
 })
 
-export const ADD_EVENTS_TO_CHARACTER = 'ADD_EVENTS_TO_CHARACTER';
-export const addEventsToCharacter = (charID, payload) => ({
-    type: ADD_EVENTS_TO_CHARACTER,
-    charID,
-    payload
+export const REFRESH_CHARACTERS = 'REFRESH_CHARACTERS';
+export const refreshCharacters = (data) => ({
+    type: REFRESH_CHARACTERS,
+    data
 });
+
+
 
 
 
@@ -98,24 +88,66 @@ export const refreshStateWithToken = (token) => dispatch => {
     
 }
 
-export const comicEventHydration = (charID) => dispatch => {
-    console.log('comiceventhydration running');
+
+
+export const DELETE_CHARACTER = 'DELETE_CHARACTER';
+
+
+export const deleteCharacter = (charID) => ({
+    type: DELETE_CHARACTER,
+    charID
+});
+
+export const deleteCharacterFromDB = (username, charID) => dispatch => {
     axios({
-        url: `${API_BASE_URL}/api/characters/events`,
+        url: `${API_BASE_URL}/api/users/deleteCharacter`,
         method: "POST",
         headers: {
-            "accept": "application/json"
+            accept: "application/json"
         },
         data: {
+            username,
             charID
         }
     })
-    .then(response => {
+    .then( response => {
         console.log(response);
-        console.log('samoan breeze');
-        dispatch(addEventsToCharacter(charID, response.data))
+        dispatch(deleteCharacter(charID))
     })
     .catch(err => {
         console.error(err);
     })
 }
+
+
+export const ENHANCE_EVENT_ARRAY = 'ENHANCE_EVENT_ARRAY';
+
+export const enhanceEventArray = (charID, payload) => ({
+    type: ENHANCE_EVENT_ARRAY,
+    charID,
+    payload
+});
+
+export const getDetailedEventInfo = (username, charID) => dispatch => {
+    axios({
+        url: `${API_BASE_URL}/api/characters/events`,
+        method: "POST",
+        headers: {
+            accept: "application/json"
+        },
+        data: {
+            charID,
+            username
+        }
+    })
+    .then(response => {
+        console.log('gophers are out');
+        console.log(response.data);
+        dispatch(refreshCharacters(response.data))
+        
+    })
+    .catch(err => {
+        console.error(err);
+    });
+}
+

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import { Container, Row, Col, Card, CardBody, CardImg } from "shards-react";
-import {refreshStateWithToken, comicEventHydration} from '../actions';
+import {refreshStateWithToken, getDetailedEventInfo} from '../actions';
 
 
 
@@ -48,8 +48,13 @@ export class Search extends Component {
     .then(response => { 
       console.log(this.state.suggestions[index]);
       this.handleCharacterAddResponse(response, index);
-      // this.comicEvent
-      console.log(this.props);
+    })
+    .then(()=> {
+      console.log('getting event stuff')
+      this.props.dispatch(getDetailedEventInfo(this.props.username ,this.state.suggestions[index].id))
+    })
+    .then(()=> {
+      //Need to save the new event per each character
       this.props.dispatch(refreshStateWithToken(localStorage.getItem('authToken')));
     })
     .catch(err => {
@@ -93,7 +98,6 @@ export class Search extends Component {
       }));
       console.log(this.state.suggestions[index]);
       console.log(this.state.suggestions[index].id);
-      this.props.dispatch(comicEventHydration(this.state.suggestions[index].id))
 
 
      
