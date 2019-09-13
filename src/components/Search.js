@@ -29,11 +29,7 @@ export class Search extends Component {
   }
 
   onClick = (index) => {
-    //We will click this, and then the User will have the information from the react-state for that character
-    //pushed into the approrpiate model in our MongoDB.
-
-    //This should be an action/reducer type thing...a thunk. 
-    //Then we need to piggyback something so we can do an event hydration activity
+    //need to use a freezing updatable loader so that we can avoid errors, but make it flexible enough to deal with error handling.
 
     axios({
       url: 'http://localhost:8000/api/users/addCharacter',
@@ -47,16 +43,20 @@ export class Search extends Component {
     })
     .then(response => { 
       console.log(this.state.suggestions[index]);
-      this.handleCharacterAddResponse(response, index);
-    })
-    .then(()=> {
+      // this.handleCharacterAddResponse(response, index);
+   
       console.log('getting event stuff')
       this.props.dispatch(getDetailedEventInfo(this.props.username ,this.state.suggestions[index].id))
+      return response
     })
-    .then(()=> {
-      //Need to save the new event per each character
-      this.props.dispatch(refreshStateWithToken(localStorage.getItem('authToken')));
+    .then(response => {
+      this.handleCharacterAddResponse(response, index);
+
     })
+    // .then(()=> {
+    //   //Need to save the new event per each character
+    //   this.props.dispatch(refreshStateWithToken(localStorage.getItem('authToken')));
+    // })
     .catch(err => {
       console.error(err);
       console.log(err.error);

@@ -2,12 +2,22 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Card, Button, CardHeader, CardFooter, CardBody,
     CardTitle, CardText, UncontrolledCollapse } from 'reactstrap';
-import {deleteCharacterFromDB, getDetailedEventInfo} from '../actions';
+import {deleteCharacterFromDB, refreshStateWithToken} from '../actions';
 
 class Collection extends Component {
     state = {
 
     };
+
+    
+
+    componentDidMount = () => {
+        console.log('sdfsdfsdfsdf');
+        this.props.dispatch(refreshStateWithToken(localStorage.getItem('authToken')));
+
+    }
+
+  
 
     arrayBufferToBase64 = (buffer) => {
         var binary = '';
@@ -31,7 +41,6 @@ class Collection extends Component {
 
     render() {
         console.log(this.props);
-
         
 
 
@@ -39,6 +48,19 @@ class Collection extends Component {
             console.log(character.image.data)
             var base64Flag = 'data:image/jpeg;base64,';
             var imageStr = this.arrayBufferToBase64(character.image.data.data);
+            let characterEvents = (character.events).map((event, index) => {
+
+                let eventImageAddress = event.thumbnail !== null ? `${event.thumbnail.path}.${event.thumbnail.extension}` : '';
+
+
+                return <div className="eventBox" key={index} style={{
+                    background: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                    url(${eventImageAddress}) no-repeat`
+                    }}>
+                    <h3>{event.title || "N/A"}</h3>
+                    <p>{event.description}</p>
+                </div>
+            })
 
             return <Card key={index}>
             <CardHeader>
@@ -51,10 +73,10 @@ class Collection extends Component {
                 <CardText>
                     {character.description || 'N/A'}
                 </CardText>
-                <Button id="toggler">EVENTS</Button>    
+                <Button id={'toggler-' + index}>EVENTS</Button>    
             </CardBody>
-            <UncontrolledCollapse toggler="#toggler">
-                <p>this is where we should have the names of the events, an image for the event, and a year, then a link to amazon.</p>
+            <UncontrolledCollapse toggler={'#' + 'toggler-' + index}>
+                {characterEvents}
             </UncontrolledCollapse>
                    </Card>
         }) 
