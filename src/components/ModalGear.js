@@ -21,6 +21,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Modal, ModalHeader, ModalBody, Button, ModalFooter} from 'reactstrap';
+import thunk from 'redux-thunk';
 
 class ModalGear extends React.Component {
     state={
@@ -34,7 +35,13 @@ class ModalGear extends React.Component {
     }
 
     render(){
+        let imageOption;
 
+        if(this.props.event.thumbnail !== null) {
+            imageOption = <img src={`${this.props.event.thumbnail.path}.${this.props.event.thumbnail.extension}`} />
+        } else {
+            imageOption = ''
+        }
               
         
         return (
@@ -50,7 +57,7 @@ class ModalGear extends React.Component {
                                 <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                             </ModalFooter>
                             <ModalBody>
-                                <img src={`${this.props.event.thumbnail.path}.${this.props.event.thumbnail.extension}`} alt=""/>
+                                {imageOption}    
                             </ModalBody>
                         </Modal>
             </div>
