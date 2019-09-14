@@ -56,12 +56,20 @@ class Collection extends Component {
 
 
         const charactersInCollection = (this.props.characters).map((character, index) => {
+            const eventsWithDescriptionsAndPictures = (character.events).filter(event => {
+                if(event.thumbnail) {
+                    if(event.thumbnail.path !== "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") {
+                        return event;
+                    }
+                } else {
 
-            const eventModalGroup = (character.events).map((event, index) => {
+                }
+            });
+
+            const eventModalGroup = eventsWithDescriptionsAndPictures.map((event, index) => {
                 return <ModalGear event={event} key={index}/>
             })
 
-            console.log(character.image.data)
             var base64Flag = 'data:image/jpeg;base64,';
             var imageStr = this.arrayBufferToBase64(character.image.data.data);
 

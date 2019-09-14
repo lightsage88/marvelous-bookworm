@@ -1,8 +1,21 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import Loader from './Loader';
 import { Container, Row, Col, Card, CardBody, CardImg } from "shards-react";
-import {refreshStateWithToken, getDetailedEventInfo} from '../actions';
+import {refreshStateWithToken, getDetailedEventInfo, refreshCharacters} from '../actions';
+import {API_BASE_URL} from '../config';
+
+const loadingMessageBank = [
+  'Bonding with symbiotes',
+  'Firing up Cerebro',
+  'Calibrating Jarvis',
+  'Refilling webshooters',
+  'Getting bitten by radioactive spiders',
+  'Administering Super-Solider Serum',
+  'Summoning Mjolnir'
+];
+
 
 
 
@@ -11,11 +24,16 @@ export class Search extends Component {
   state = {
     value: '',
     suggestions: [],
-    message: ''
+    message: '',
+    loading: false,
+    loadingMessage: ''
   }
 
   typingTimer = null;
 
+  t = setInterval(this.displayLoadingMessage, 1400);
+
+ 
  
 
   onChange = (e) => {
@@ -25,12 +43,18 @@ export class Search extends Component {
       suggestions: []
     });
     this.handleTypingChange(e);
-  
   }
 
-  onClick = (index) => {
-    //need to use a freezing updatable loader so that we can avoid errors, but make it flexible enough to deal with error handling.
 
+
+  
+
+  onClick = (index) => {
+    if(this.props.characters[index].id == this.state.suggestions[index].id) {
+      this.handleCharacterAddResponse(null, null, 'alreadyHave');
+    } else {
+    //need to use a freezing updatable loader so that we can avoid errors, but make it flexible enough to deal with error handling.
+    this.displayLoadingMessage();
     axios({
       url: 'http://localhost:8000/api/users/addCharacter',
       method: 'POST',
@@ -46,13 +70,15 @@ export class Search extends Component {
       // this.handleCharacterAddResponse(response, index);
    
       console.log('getting event stuff')
-      this.props.dispatch(getDetailedEventInfo(this.props.username ,this.state.suggestions[index].id))
-      return response
+      this.eventRetrieval(index);
+      // this.props.dispatch(getDetailedEventInfo(this.props.username ,this.state.suggestions[index].id))
+      // return response
     })
-    .then(response => {
-      this.handleCharacterAddResponse(response, index);
+    // .then(response => {
 
-    })
+    //   this.handleCharacterAddResponse(response, index);
+
+    // })
     // .then(()=> {
     //   //Need to save the new event per each character
     //   this.props.dispatch(refreshStateWithToken(localStorage.getItem('authToken')));
@@ -64,19 +90,66 @@ export class Search extends Component {
       
       
     });
+   }
+  }
+
+  displayLoadingMessage = () => {
+    this.setState({
+      loadingMessage: loadingMessageBank[Math.floor(Math.random()*loadingMessageBank.length)],
+      loading: true
+    });
+    
+  }
+
+  eventRetrieval = (index) => {  
+    axios({
+      url: `${API_BASE_URL}/api/characters/events`,
+      method: "POST",
+      headers: {
+          accept: "application/json"
+      },
+      data: {
+          charID: this.state.suggestions[index].id,
+          username: this.props.username
+      }
+  })
+  .then(response => {
+      console.log('gophers are out');
+      console.log(response.data);
+      this.props.dispatch(refreshCharacters(response.data));
+      console.log(response)
+      return response
+      
+  })
+  .then(_response => {
+    console.log(_response);
+    console.log('should kill the t');
+    clearInterval(this.t);
+    this.handleCharacterAddResponse(_response, index)
+  })
+  .catch(err => {
+      console.error(err);
+  });
+    
   }
 
   waitForTapToCloseMessage = () => {
     console.log('tapp tapp');
   }
 
-  handleCharacterAddResponse = (response, index) => {
+  handleCharacterAddResponse = (response, index, fail) => {
+    this.setState({
+      loading: false,
+      loadingMessage: ''
+    })
     let homeComponentDiv = document.getElementById('homeComponentDiv');
     let homeComponentMessage = document.getElementById('homeComponentMessage');
     console.log('hcar running');
-    if(response.data.code == 422) {
+    console.log(response);
+    if(fail == "alreadyHave") {
       this.setState(prevState=> ({
-        message: response.data.message
+        message: "You already have this character!",
+        loading:false
       }));
 
       homeComponentMessage.classList.add('homeComponentMessageFailure');
@@ -84,7 +157,8 @@ export class Search extends Component {
       setTimeout(()=>{
       console.log('hottudoggo');
       this.setState(prevState=> ({
-        message: ''
+        message: '',
+        loading: false
       }));
 
       homeComponentMessage.classList.remove('homeComponentMessageFailure');
@@ -94,7 +168,8 @@ export class Search extends Component {
 
     } else {
       this.setState(prevState=> ({
-        message: "Character Added!"
+        message: "Character Added!",
+        loading: false
       }));
       console.log(this.state.suggestions[index]);
       console.log(this.state.suggestions[index].id);
@@ -122,6 +197,7 @@ export class Search extends Component {
     let value = e.target.value;
     clearTimeout(this.typingTimer);
     this.typingTimer = setTimeout(()=>{this.doCharacterSearch(value)}, 450);
+    this.displayLoadingMessage();
   }
 
   doCharacterSearch = (value) => {
@@ -142,6 +218,12 @@ export class Search extends Component {
     .then(response => {
       let data = response.data;
       this.putSelectionsInStateSuggestions(data);
+      /////
+      clearInterval(this.t);
+      this.setState({
+        loading: false,
+        loadingMessage: ''
+      });
     })
     .catch(err => {
       console.error(err);
@@ -162,6 +244,12 @@ export class Search extends Component {
 
     
   console.log(this.props);
+  // if(this.state.suggestions.length > 0) {
+  //   clearInterval(this.t);
+  //   this.setState({
+  //     loading: false
+  //   })
+  // }
 
    
   
@@ -194,6 +282,7 @@ export class Search extends Component {
 
     return (
       <div id="homeComponentDiv">
+      <Loader loading={this.state.loading} loadingMessage={this.state.loadingMessage}/>
         <h2>Home Component</h2>
         <h1 id="homeComponentMessage">{this.state.message}</h1>
         <input id="homeComponentInput" type='text' onChange={(e)=>{this.onChange(e)}} />

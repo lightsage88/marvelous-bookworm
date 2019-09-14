@@ -35,10 +35,21 @@ class ModalGear extends React.Component {
     }
 
     render(){
+        let descriptionOption;
         let imageOption;
 
+        if(this.props.event.description !== null) {
+            descriptionOption = <ModalBody>
+                {this.props.event.description}
+            </ModalBody>
+        } else {
+            descriptionOption= '';
+        }
+
         if(this.props.event.thumbnail !== null) {
-            imageOption = <img src={`${this.props.event.thumbnail.path}.${this.props.event.thumbnail.extension}`} />
+            imageOption = <ModalBody>
+             <img src={`${this.props.event.thumbnail.path}.${this.props.event.thumbnail.extension}`} />
+            </ModalBody>
         } else {
             imageOption = ''
         }
@@ -49,16 +60,14 @@ class ModalGear extends React.Component {
              <Button  id={this.props.key} color="danger" onClick={()=>{this.toggle()}}>{this.props.event.title}</Button>
                         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                             <ModalHeader toggle={this.toggle}>{this.props.event.title}</ModalHeader>
-                            <ModalBody>
-                                {this.props.event.description}
-                            </ModalBody>
+                            {descriptionOption}
                             <ModalFooter>
                                 <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
                                 <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                             </ModalFooter>
-                            <ModalBody>
+                            
                                 {imageOption}    
-                            </ModalBody>
+                            
                         </Modal>
             </div>
         )

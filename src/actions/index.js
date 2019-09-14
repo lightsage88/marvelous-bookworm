@@ -143,7 +143,8 @@ export const getDetailedEventInfo = (username, charID) => dispatch => {
     .then(response => {
         console.log('gophers are out');
         console.log(response.data);
-        dispatch(refreshCharacters(response.data))
+        dispatch(refreshCharacters(response.data));
+        return response
         
     })
     .catch(err => {
