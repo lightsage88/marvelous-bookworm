@@ -2,6 +2,8 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import {API_BASE_URL} from '../config';
+
 
 import {Search} from './Search';
 import { doesNotReject } from 'assert';
@@ -47,11 +49,11 @@ describe('<Search/>', ()=>{
         ];
 
         var mock = new MockAdapter(axios); 
-        mock.onPost(`http://localhost:8000/api/characters/search`, { 
+        mock.onPost(`${API_BASE_URL}/api/characters/search`, { 
             query: wrapper.state().value, 
         }).reply(200, data);
        doCharacterSearchSpy('Spider-Man');
-       oSpy(data);
+       oSpy(data); 
        wrapper.update();
         expect(doCharacterSearchSpy).toHaveBeenCalledWith('Spider-Man');
         expect(oSpy).toHaveBeenCalledWith(data);
