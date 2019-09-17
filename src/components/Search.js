@@ -52,10 +52,11 @@ export class Search extends Component {
   onClick = (index) => {
     console.log(this.props);
     console.log(this.state);
-    if(this.props.characters.length > 0){
-      if(this.props.characters[index].id == this.state.suggestions[index].id) {
+    if(this.props.characters.length > 0 && this.props.characters[index].id == this.state.suggestions[index].id){
+   
         this.handleCharacterAddResponse(null, null, 'alreadyHave');
-       } 
+      
+       
     } else {
     //need to use a freezing updatable loader so that we can avoid errors, but make it flexible enough to deal with error handling.
     this.displayLoadingMessage();
@@ -66,7 +67,8 @@ export class Search extends Component {
         "accept": 'application/json'
       },
       data: {
-        characterObject: this.state.suggestions[index]
+        characterObject: this.state.suggestions[index],
+        username: this.props.username
       }
     })
     .then(response => { 

@@ -73,50 +73,19 @@ class Collection extends Component {
             var base64Flag = 'data:image/jpeg;base64,';
             var imageStr = this.arrayBufferToBase64(character.image.data.data);
 
-            // let characterEventModalButton = (character.events).map((event, index) => {
-            //   return  <div key={index}>
-            //   <Button  id={index} color="danger" onClick={()=>{this.toggle(index)}}>{event.title}</Button>
-            //             <Modal id={index + `-modal`} isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-            //                 <ModalHeader toggle={this.toggle}>{event.title}</ModalHeader>
-            //                 <ModalBody>
-            //                     {event.description}
-            //                 </ModalBody>
-            //                 <ModalFooter>
-            //                     <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-            //                     <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-            //                 </ModalFooter>
-            //                 <ModalBody>
-            //                     <img src={`${event.thumbnail.path}.${event.thumbnail.extension}`} alt=""/>
-            //                 </ModalBody>
-            //             </Modal>
-            //             </div>
-            // });
-                            // let characterEvents = (character.events).map((event, index) => {
-
-                            //     let eventImageAddress = event.thumbnail !== null ? `${event.thumbnail.path}.${event.thumbnail.extension}` : '';
-
-
-                            //     return <div className="eventBox" key={index} style={{
-                            //         background: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-                            //         url(${eventImageAddress}) no-repeat`
-                            //         }}>
-                            //         <h3>{event.title || "N/A"}</h3>
-                            //         <p>{event.description}</p>
-                            //     </div>
-                            // })
-
-
-
-            return <Card key={index}>
-            <CardHeader>
-                {character.name}
-                <Button onClick={(e)=>{this.deleteCharacterFromCollection(e, this.props.username, character.id)}} >X</Button>
+            return <Card className="marvelCharacterCard" key={index}>
+            <CardHeader className="marvelCharacterCardHeader">
+                <h2 className="marvelCharacterCardName">{character.name}</h2>
+                <Button className="marvelCharacterDeleteButton" onClick={(e)=>{this.deleteCharacterFromCollection(e, this.props.username, character.id)}} >X</Button>
             </CardHeader>
-            <img src={base64Flag + imageStr} />
+            <img className="marvelCharacterCardMainImage" src={base64Flag + imageStr} />
 
             <CardBody>
                 <CardText>
-                    {character.description || 'N/A'}
+                    { character.description ? <div>
+                    <h3>BIO</h3>
+                    <p>{character.description}</p>
+                    </div> : ''}
                 </CardText>
                 <Button id={'toggler-' + index}>EVENTS</Button>    
             </CardBody>
@@ -130,7 +99,7 @@ class Collection extends Component {
         return (
             <React.Fragment>
                 <h1>This is your collection!</h1>
-                <ul>
+                <ul id="characterCollectionUL">
                     {charactersInCollection}
                 </ul>
             </React.Fragment>

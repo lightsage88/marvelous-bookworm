@@ -15,6 +15,31 @@
   z-index: 1
 }
 
+#characterCollectionUL {
+  padding: 5vw;
+}
+
+.marvelCharacterCard {
+  margin-bottom: 5vw;
+}
+
+.marvelCharacterCardMainImage {
+  width: 100%;
+}
+
+.marvelCharacterCardName {
+  display:inline-block;
+}
+
+.marvelCharacterCardHeader {
+  display: block;
+  text-align:justify;
+}
+
+.marvelCharacterDeleteButton {
+  display: inline;
+  float: right;
+}
 
 .homeComponentMessageSuccess {
   position: fixed;
