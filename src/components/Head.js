@@ -93,6 +93,9 @@ export class Head extends React.Component {
                     <NavItem>
                         <NavLink className="nav-link" to="/login">Login</NavLink>
                     </NavItem>
+                    <NavItem>
+                        <NavLink className="nav-link" to="/signup">Signup</NavLink>
+                    </NavItem>
                     </React.Fragment>
                     
                 
