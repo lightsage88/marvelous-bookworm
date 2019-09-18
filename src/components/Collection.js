@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import html2canvas from 'html2canvas';
-// import chance from 'chance';
 import $ from 'jquery';
 
 
@@ -55,7 +54,7 @@ class Collection extends Component {
             let tempCtx = canvas.getContext("2d");
             tempCtx.putImageData(new ImageData(imageDataArray, w , h), 0, 0);
             
-        return canvas;
+        return canvas; 
       }
 
       createBlankImageData = (imageData) => {
@@ -98,7 +97,8 @@ class Collection extends Component {
     }
 
     deleteCharacterFromCollection = (e, username, characterID, cardID, cardIndex) => {
-        
+        imageDataArray = [];
+
         e.preventDefault();
         console.log('we are deleting ' + characterID);
         console.log(cardID);
@@ -143,8 +143,8 @@ class Collection extends Component {
 
             //capture all div data as image
             let ctx = canvas.getContext("2d");
-            var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            var pixelArr = imageData.data;
+            let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            let pixelArr = imageData.data;
             this.createBlankImageData(imageData);
        
 
@@ -164,7 +164,11 @@ class Collection extends Component {
                 c.classList.add("dust");
                 // $(".wrapper").append(c);
                         //MAY NEED TO APPEND TO CARDID Variable???
-                $("body").append(c);
+                // $(".marvelCharacterCard").prepend(c);
+                $(".marvelCharacterCard")[cardIndex].append(c);
+
+                
+
               }
 
             //clear all children except the canvas == Will e.target.children work??? we'll see!
@@ -182,10 +186,9 @@ class Collection extends Component {
                   animateTransform($(this),100,-100,chance.integer({ min: -15, max: 15 }),800+(110*index));
                 }, 70*index); 
                 //remove the canvas from DOM tree when faded
-                $(this).delay(70*index).fadeOut((90)+400,"easeInQuint",()=> {$( this ).remove();});
+                $(this).delay(70*index).fadeOut((110*index)+800,"easeInQuint",()=> {$( this ).remove();});
               });
               this.props.dispatch(deleteCharacterFromDB(username, characterID));
-              imageDataArray = [];
 
 
     });
@@ -200,7 +203,7 @@ class Collection extends Component {
        
 
         const charactersInCollection = (this.props.characters).map((character, index) => {
-            let cardID = `${index}-characterCard`;
+            let cardID = `${character.name}-characterCard`;
             let cardIndex = index;
             const eventsWithDescriptionsAndPictures = (character.events).filter(event => {
                 if(event.thumbnail) {
