@@ -50,12 +50,24 @@ export class Search extends Component {
   
 
   onClick = (index) => {
+    let stop;
     console.log(this.props);
     console.log(this.state);
-    if(this.props.characters.length > 0 && this.props.characters[index].id == this.state.suggestions[index].id){
-   
+
+    this.props.characters.forEach(element => {
+      if(element.id == this.state.suggestions[index].id) {
+        stop = true;
+      } else {
+        console.log('meh');
+      }
+    })
+
+
+    if(this.props.characters.length > 0 && stop === true){
+      // if(this.props.characters[index].id == this.state.suggestions[index].id) {
         this.handleCharacterAddResponse(null, null, 'alreadyHave');
       
+         return;
        
     } else {
     //need to use a freezing updatable loader so that we can avoid errors, but make it flexible enough to deal with error handling.
