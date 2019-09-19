@@ -46,12 +46,20 @@ class ModalGear extends React.Component {
             descriptionOption= '';
         }
 
-        if(this.props.event.thumbnail !== null) {
+        // if(this.props.event.thumbnail !== null) {
+        //     imageOption = <ModalBody>
+        //      <img src={`${this.props.event.thumbnail.path}.${this.props.event.thumbnail.extension}`} />
+        //     </ModalBody>
+        // } else {
+        //     imageOption = ''
+        // }
+
+        if(!this.props.event.thumbnail) {
+            imageOption = ''
+        } else {
             imageOption = <ModalBody>
              <img src={`${this.props.event.thumbnail.path}.${this.props.event.thumbnail.extension}`} />
             </ModalBody>
-        } else {
-            imageOption = ''
         }
               
         
