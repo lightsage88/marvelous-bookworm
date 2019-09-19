@@ -15,7 +15,7 @@ import ModalGear from './ModalGear';
 import {deleteCharacterFromDB, refreshStateWithToken} from '../actions';
 require("jquery-ui/ui/effects/effect-slide");
 
-let canvasCount = 35;
+let canvasCount = 3;
 let imageDataArray = [];
 
         // Load Chance
