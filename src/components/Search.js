@@ -73,7 +73,7 @@ export class Search extends Component {
     //need to use a freezing updatable loader so that we can avoid errors, but make it flexible enough to deal with error handling.
     this.displayLoadingMessage();
     axios({
-      url: 'http://localhost:8000/api/users/addCharacter',
+      url: `${API_BASE_URL}/api/users/addCharacter`,
       method: 'POST',
       headers: {
         "accept": 'application/json'
