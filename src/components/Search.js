@@ -224,7 +224,7 @@ export class Search extends Component {
       value
     });
     axios({
-      url: 'http://localhost:8000/api/characters/search',
+      url: `${API_BASE_URL}/api/characters/search`,
       method: "POST",
       headers: {
         "accept" : 'application/json'
