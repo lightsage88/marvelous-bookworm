@@ -44,7 +44,7 @@ class Collection extends Component {
       }
 
       
-
+ 
       
 
       newCanvasFromImageData = (imageDataArray ,w , h) => {
