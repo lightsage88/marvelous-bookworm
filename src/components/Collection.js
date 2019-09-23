@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import html2canvas from 'html2canvas';
 import $ from 'jquery';
+import {Redirect} from 'react-router-dom';
 
 
 
@@ -195,11 +196,17 @@ class Collection extends Component {
         //now we dispatch a thunk action that takes the character ID;
     }
 
+    renderRedirect = () => {
+        console.log('rerer');
+        if(!localStorage.getItem('authToken')) {
+            console.log('bota fuori');
+            return <Redirect to="/" />
+        }   
+    }
 
     render() {
         console.log(this.props);
         console.log(this.state);
-        
        
 
         const charactersInCollection = (this.props.characters).map((character, index) => {
@@ -232,8 +239,8 @@ class Collection extends Component {
             <CardBody>
                 <CardText>
                     { character.description ? <div>
-                    <h3>BIO</h3>
-                    <p>{character.description}</p>
+                
+                    {character.description}
                     </div> : ''}
                 </CardText>
                 <Button id={'toggler-' + index}>EVENTS</Button>    
@@ -248,13 +255,14 @@ class Collection extends Component {
 
 
         return (
-            <React.Fragment>
-                <h1>This is your collection!</h1>
+            <div id="collectionDiv">
+                {this.renderRedirect()}
+                <h1 id="collectionH1">ASSEMBLE!!</h1>
                 <ul id="characterCollectionUL">
                     {charactersInCollection}
                 </ul>
                 
-            </React.Fragment>
+            </div>
         )
     }
 
@@ -263,7 +271,8 @@ class Collection extends Component {
 const mapStateToProps = (state) => ({
     username: state.user.username,
     characters: state.user.characters,
-    books: state.user.books
+    books: state.user.books,
+    authToken: state.user.authToken
 })
 
 export default connect(mapStateToProps)(Collection);

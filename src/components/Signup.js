@@ -73,6 +73,9 @@ class Signup extends React.Component  {
             })
             .then(response => {
                 console.log(response);
+                if(response.status == 201) {
+                    console.log('are you reeeddi for wurrrshiiiip?');
+                }
             })
             .catch(err =>{
                 console.error(err);
@@ -94,7 +97,7 @@ class Signup extends React.Component  {
 
 
     return (
-        <div>
+        <div id="signupDiv">
             <h1>This is the signup page</h1>
           <Form>
             <FormGroup>

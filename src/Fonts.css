@@ -3,4 +3,24 @@
     src: url('./assets/fonts/Bebas-Regular.ttf');
   }
 
+  @font-face {
+    font-family: "ComicBookRegular";
+    src: url("./assets//fonts/Comic Book.otf");
+  }
+
+  @font-face {
+    font-family: "ComicBookItalic";
+    src: url("./assets/fonts/Comic Book Italic.otf");
+  }
+
+  @font-face {
+    font-family: "ComicBookBold";
+    src: url("./assets/fonts/Comic Book Bold.otf");
+  }
+
+  @font-face {
+    font-family: "ComicBookBoldItalic";
+    src: url("./assets/fonts/Comic Book Bold Italic.otf");
+  }
+
 

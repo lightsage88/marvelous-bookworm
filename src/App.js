@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {AnimatedSwitch} from 'react-router-transition';
 import {connect} from 'react-redux';
 import {maintainState} from './actions';
 import styled from 'styled-components';
@@ -25,31 +26,56 @@ const AppFooter = styled.footer`
 
 `;
 
+   const renderRedirect = () => {
+        console.log('rerer');
+        if(!localStorage.getItem('authToken')) {
+            console.log('bota fuori');
+            return <Redirect to="/" />
+        }   
+    }
+    
 
 
-export const App = (props) => {
+
+export class App extends React.Component {
   
-  
-  
-  return (
-    <Router>
-      <div className="App">
-      <Head />
-      <Route exact path="/" component={Landing} /> 
-      <Route path="/about" component={About} />
-      <Route path="/collection" component={Collection} />
-      <Route path="/search" component={Search} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/login" component={Login} />
-      <Route path="/account" component={Account} />
+  render() {
+    
+    return (
+      <Router>
+        <div className="App" >
+        <Head />
+      <AnimatedSwitch
+      atEnter={{ opacity: 0 }}
+      atLeave={{ opacity: 0 }}
+      atActive={{ opacity: 1 }}
+      className="switch-wrapper"  
+      
+      >
+        <Route exact path="/" render={(props) => <Landing   {...this.props} renderRedirect={renderRedirect()} />}  />
+
+        {/* <Route exact path="/" render={(props) => <Landing   {...this.props} renderRedirect={renderRedirect()} />}  /> */}
+
+        {/* <Route path="/about" render={(props) => <About   {...this.props} renderRedirect={renderRedirect()} />} /> */}
+
+        <Route path="/about" render={(props) => <About   {...this.props} renderRedirect={renderRedirect()} />} />
 
 
-      <AppFooter className="footer mt-auto py-3">
-        This is a footer
-      </AppFooter>
-      </div>
-    </Router>
-  );
+        <Route path="/collection" render={(props) => <Collection  {...this.props} renderRedirect={renderRedirect()} />} />
+        <Route path="/search" render={(props) => <Search   {...this.props} renderRedirect={renderRedirect()} />} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Login} />
+        <Route path="/account" render={(props) => <Account   {...this.props} renderRedirect={renderRedirect()} />}/>
+      </AnimatedSwitch>
+
+        <AppFooter className="footer mt-auto py-3">
+          This is a footer
+        </AppFooter>
+        </div>
+        
+      </Router>
+    );
+  }
   
 }
 

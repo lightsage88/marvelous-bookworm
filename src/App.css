@@ -1,3 +1,5 @@
+
+
 /* * {
   box-sizing: border-box;
 } 
@@ -15,6 +17,96 @@ body {
   background: #ddd;
 }  */
 
+/* import backgroundImage from '../assets/pictures/comicBackgrounds/blueDots.jpg'; */
+
+div.App {
+  background: url('../../bookworm/src/assets/pictures/comicBackgrounds/3QEQ4qb.jpg') center no-repeat;
+  background-size: cover;
+}
+
+#aboutDiv {
+  background: url('../../bookworm/src/assets/pictures/comicBackgrounds/blueDots.jpg');
+  height: 100%;
+  height: -webkit-fill-available;
+}
+
+#signupDiv {
+  background: url('../../bookworm/src/assets/pictures/comicBackgrounds/orangeDots.png');
+  height: -webkit-fill-available;
+
+}
+
+#searchComponentDiv {
+  background: 
+    linear-gradient(
+      
+      rgba(0, 0, 0, 0.6), 
+      rgba(0, 0, 0, 0.6)
+    ), url('../../bookworm/src/assets/pictures/comicBackgrounds/11427.jpg');
+  height: -webkit-fill-available;
+  background-size: contain;
+}
+
+#collectionDiv {
+  background: 
+  linear-gradient(
+    
+    rgba(0, 0, 0, 0.6), 
+    rgba(0, 0, 0, 0.6)
+  ), url('../../bookworm/src/assets/pictures/comicBackgrounds/purpleDots.png');
+  height: -webkit-fill-available;
+  background-size: contain;
+}
+
+#collectionH1 {
+  border: solid;
+  /* margin */
+  background:lightgoldenrodyellow;
+}
+
+#searchComponentDiv h1 {
+  border: solid;
+  background: lightgoldenrodyellow;
+}
+
+#searchComponentDiv h1, #collectionH1  {
+  font-family: "ComicBookBoldItalic";
+}
+
+#searchComponentInput {
+  border: red solid;
+    border-radius: 4vw;
+    background: black;
+    color: white;
+    text-align: center;
+    font-size: 6vw;
+    font-family:"ComicBookRegular";
+}
+
+#searchResultsUL {
+  overflow-y: scroll;
+  height: 90vh;
+  margin-bottom: 0 !important;
+  padding: 0;
+  background: inherit;
+}
+
+#loaderDiv {
+  position: fixed;
+    margin: auto 15%;
+    width: auto;
+    min-width: 70%;
+    top: 40%;
+    z-index: 4;
+    height: fit-content;
+    border: solid;
+    background: grey;
+}
+
+.suggestionCardsH2 {
+  font-family: "ComicBookItalic";
+}
+
 .dust {
   position: absolute;
   /* position: relative; */
@@ -26,7 +118,7 @@ body {
 }
 
 /*TODO: get this ruleset immediatebelow to scss or something*/
-.homeComponentDivBlur {
+.searchComponentDivBlur {
   content: '';
   position: absolute;
   top: 0;
@@ -64,7 +156,7 @@ body {
   float: right;
 }
 
-.homeComponentMessageSuccess {
+.searchComponentMessageSuccess {
   position: fixed;
   z-index: 2;
   border: solid green;
@@ -78,7 +170,7 @@ body {
   margin: auto 5%;
 }
 
-.homeComponentMessageFailure {
+.searchComponentMessageFailure {
   position: fixed;
   z-index: 2;
   border: solid red;

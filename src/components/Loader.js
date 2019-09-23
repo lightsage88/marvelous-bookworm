@@ -11,14 +11,15 @@ const override = css`
 function Loader(props) {
     
         return (
-            <div>
+            <div id="loaderDiv">
                 <div className='sweet-loading'>
         <GridLoader
           css={override}
           sizeUnit={"px"}
-          size={150}
+          size={20}
           color={'#123abc'}
           loading={props.loading}
+          position={"fixed"}
         />
         <p>{props.loadingMessage}</p>
       </div> 

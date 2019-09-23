@@ -160,8 +160,8 @@ export class Search extends Component {
       loading: false,
       loadingMessage: ''
     })
-    let homeComponentDiv = document.getElementById('homeComponentDiv');
-    let homeComponentMessage = document.getElementById('homeComponentMessage');
+    let searchComponentDiv = document.getElementById('searchComponentDiv');
+    let searchComponentMessage = document.getElementById('searchComponentMessage');
     console.log('hcar running');
     console.log(response);
     if(fail == "alreadyHave") {
@@ -170,7 +170,7 @@ export class Search extends Component {
         loading:false
       }));
 
-      homeComponentMessage.classList.add('homeComponentMessageFailure');
+      searchComponentMessage.classList.add('searchComponentMessageFailure');
 
       setTimeout(()=>{
       console.log('hottudoggo');
@@ -179,7 +179,7 @@ export class Search extends Component {
         loading: false
       }));
 
-      homeComponentMessage.classList.remove('homeComponentMessageFailure');
+      searchComponentMessage.classList.remove('searchComponentMessageFailure');
 
       }, 2000)
 
@@ -194,17 +194,17 @@ export class Search extends Component {
 
 
      
-      // homeComponentDiv.classList.add('homeComponentDivBlur');
-      homeComponentMessage.classList.add('homeComponentMessageSuccess');
+      // searchComponentDiv.classList.add('searchComponentDivBlur');
+      searchComponentMessage.classList.add('searchComponentMessageSuccess');
 
       setTimeout(()=>{
       console.log('hanbaga');
       this.setState(prevState=> ({
         message: ''
       }));
-      // homeComponentDiv.classList.remove('homeComponentDivBlur');
+      // searchComponentDiv.classList.remove('searchComponentDivBlur');
 
-      homeComponentMessage.classList.remove('homeComponentMessageSuccess');
+      searchComponentMessage.classList.remove('searchComponentMessageSuccess');
 
       }, 2000)
     }
@@ -299,13 +299,22 @@ export class Search extends Component {
     
 
     return (
-      <div id="homeComponentDiv">
-      <Loader loading={this.state.loading} loadingMessage={this.state.loadingMessage}/>
-        <h2>Home Component</h2>
-        <h1 id="homeComponentMessage">{this.state.message}</h1>
-        <input id="homeComponentInput" type='text' onChange={(e)=>{this.onChange(e)}} />
+      <div id="searchComponentDiv">
+        {/* <h2>Search</h2> */}
+
+        <h1>Search...</h1>
+      {
+        this.state.loading == true ? 
+        <Loader loading={this.state.loading} loadingMessage={this.state.loadingMessage}/>
+        : 
+        ''
+      }
         
-        {suggestionCards}
+        <h1 id="searchComponentMessage">{this.state.message}</h1>
+        <input id="searchComponentInput" type='text' onChange={(e)=>{this.onChange(e)}} />
+        <ul id="searchResultsUL">
+          {suggestionCards}
+        </ul>
       </div>
     )
   }
