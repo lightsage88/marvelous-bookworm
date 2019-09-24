@@ -8,7 +8,7 @@ export const Landing = (props) => {
     console.log(props);
     return (
         <div>
-            <h1>This is the landing</h1>
+            <h1 id="landingH1">Welcome!!</h1>
         </div>
     )
 }

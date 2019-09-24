@@ -98,8 +98,8 @@ class Signup extends React.Component  {
 
     return (
         <div id="signupDiv">
-            <h1>This is the signup page</h1>
-          <Form>
+            <h1 id="signupH1">Sign Up</h1>
+          <Form id="signupForm">
             <FormGroup>
                 <Label for="firstNameInput">FIRST NAME</Label>
                 <Input onChange={(e)=>{this.onChange(e)}} id="firstNameInput" placeholder="Peter"/>

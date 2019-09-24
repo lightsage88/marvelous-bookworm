@@ -46,26 +46,26 @@ export class App extends React.Component {
         <div className="App" >
         <Head />
       <AnimatedSwitch
-      atEnter={{ opacity: 0 }}
+      atEnter={{ opacity: 0.5 }}
       atLeave={{ opacity: 0 }}
       atActive={{ opacity: 1 }}
       className="switch-wrapper"  
       
       >
-        <Route exact path="/" render={(props) => <Landing   {...this.props} renderRedirect={renderRedirect()} />}  />
+        <Route exact path="/" render={(props) => <Landing   {...this.props} renderRedirect={renderRedirect} />}  />
 
         {/* <Route exact path="/" render={(props) => <Landing   {...this.props} renderRedirect={renderRedirect()} />}  /> */}
 
         {/* <Route path="/about" render={(props) => <About   {...this.props} renderRedirect={renderRedirect()} />} /> */}
 
-        <Route path="/about" render={(props) => <About   {...this.props} renderRedirect={renderRedirect()} />} />
+        <Route path="/about" render={(props) => <About   {...this.props} renderRedirect={renderRedirect} />} />
 
 
-        <Route path="/collection" render={(props) => <Collection  {...this.props} renderRedirect={renderRedirect()} />} />
-        <Route path="/search" render={(props) => <Search   {...this.props} renderRedirect={renderRedirect()} />} />
+        <Route path="/collection" render={(props) => <Collection  {...this.props} renderRedirect={renderRedirect} />} />
+        <Route path="/search" render={(props) => <Search   {...this.props} renderRedirect={renderRedirect} />} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
-        <Route path="/account" render={(props) => <Account   {...this.props} renderRedirect={renderRedirect()} />}/>
+        <Route path="/account" render={(props) => <Account   {...this.props} renderRedirect={renderRedirect} />}/>
       </AnimatedSwitch>
 
         <AppFooter className="footer mt-auto py-3">

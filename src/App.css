@@ -51,7 +51,7 @@ div.App {
     rgba(0,0,0,0.6)
   ), url('../../bookworm/src/assets/pictures/comicBackgrounds/blueDots.jpg');
   height: 100%;
-  height: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
 }
 
 #aboutSection {
@@ -79,7 +79,24 @@ div.App {
 #signupDiv {
   background: url('../../bookworm/src/assets/pictures/comicBackgrounds/orangeDots.png');
   height: -webkit-fill-available;
+}
 
+#signupH1 {
+  border:solid;
+  background: lightgoldenrodyellow;
+  font-family: "ComicBookBoldItalic";
+}
+
+#signupForm {
+  border: solid;
+    border-style: groove;
+    border-radius: 5vw;
+    padding: 5vw;
+    z-index: 20;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+    font-family: "ComicBookRegular";
+    color: lightgoldenrodyellow;
+    margin: 5vw;
 }
 
 #searchComponentDiv {
@@ -108,6 +125,12 @@ div.App {
   border: solid;
   /* margin */
   background:lightgoldenrodyellow;
+}
+
+#landingH1 {
+  border: solid;
+  background:lightgoldenrodyellow;
+  font-family: "ComicBookBoldItalic";
 }
 
 #searchComponentDiv h1 {

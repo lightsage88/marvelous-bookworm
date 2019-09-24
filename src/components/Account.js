@@ -99,10 +99,11 @@ export class Account extends React.Component {
 
 
     render() { 
-       
-        
+      
     return (
         <div>
+            {this.props.renderRedirect()}
+
             <h2 id="accountH2">Account</h2>
             {
                 this.state.errorMessage === '' ? null : <h1>{this.state.errorMessage}</h1>
