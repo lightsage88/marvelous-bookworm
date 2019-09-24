@@ -24,10 +24,56 @@ div.App {
   background-size: cover;
 }
 
+#accountForm {
+  border: solid;
+    background: rgba(0,0,0,0.7);
+    border-style: groove;
+    border-radius: 4vw;
+    margin: auto 5vw;
+    color: white;
+    font-family: "ComicBookRegular";
+}
+
+.text-muted {
+  color: lightgoldenrodyellow !important;
+  margin: auto 5vw;
+}
+
+.accountFormGroup 
+  input {
+    background-color: transparent;
+  }
+
+
 #aboutDiv {
-  background: url('../../bookworm/src/assets/pictures/comicBackgrounds/blueDots.jpg');
+  background: linear-gradient(
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.6)
+  ), url('../../bookworm/src/assets/pictures/comicBackgrounds/blueDots.jpg');
   height: 100%;
   height: -webkit-fill-available;
+}
+
+#aboutSection {
+  background: white;
+    opacity: 0.85;
+    border: solid;
+    border-style: groove;
+    border-radius: 5vw;
+    margin: 5vw;
+    font-family: "ComicBookRegular";
+}
+
+#aboutDivH2 {
+  border: solid;
+  background: lightgoldenrodyellow;
+  font-family: "ComicBookBoldItalic";
+}
+
+#accountH2 {
+  border: solid;
+  background: lightgoldenrodyellow;
+  font-family: "ComicBookBoldItalic";
 }
 
 #signupDiv {

@@ -103,41 +103,41 @@ export class Account extends React.Component {
         
     return (
         <div>
-            <h1>Account Page</h1>
+            <h2 id="accountH2">Account</h2>
             {
                 this.state.errorMessage === '' ? null : <h1>{this.state.errorMessage}</h1>
             }
-            <Form>
-                <FormGroup>
+            <Form id="accountForm">
+                <FormGroup className="accountFormGroup">
                     <Label for="firstNameInput">FIRST NAME</Label>
                     <Input id="firstNameInput" placeholder={this.props.firstName}/>
                     <FormText>You may change your first name, if you wish.</FormText>
                 </FormGroup>
 
-                <FormGroup>
+                <FormGroup className="accountFormGroup">
                     <Label for="lastNameInput">LAST NAME</Label>
                     <Input id="lastNameInput" placeholder={this.props.lastName}/>
                     <FormText>You can also change your last name, be an agent of mystery...or an agent of S.H.I.E.L.D. Why not?</FormText>
                 </FormGroup>
 
-                <FormGroup>
+                <FormGroup className="accountFormGroup">
                     <Label for="usernameInput">USERNAME</Label>
                     <Input id="usernameInput" placeholder={this.props.username}/>
                     <FormText>Assuming no one else has taken the new username you'd want, you can change that too.</FormText>
                 </FormGroup>
 
-                <FormGroup>
+                <FormGroup className="accountFormGroup">
                     <Label for="oldPasswordInput">CURRENT PASSWORD</Label>
                     <Input  onChange={(e)=>{this.onChange(e)}}id="oldPasswordInput" type="password"/>
-                    <FormText>We can't just have you running up in here changing folks' accounts willy nilly. Jeez.</FormText>
+                    <FormText>We can't just have you running up in here changing folks' accounts willy nilly. Jeez!!</FormText>
                 </FormGroup>
 
-                <FormGroup>
+                <FormGroup className="accountFormGroup">
                     <Label for="newPasswordInput1">NEW PASSWORD</Label>
                     <Input  onChange={(e)=>{this.onChange(e)}}id="newPasswordInput1" type="password"/>
                 </FormGroup>
 
-                <FormGroup>
+                <FormGroup className="accountFormGroup">
                     <Label for="newPasswordInput2">REPEAT THAT ONE MORE TIME</Label>
                     <Input valid={ this.state.validate.passwordState === 'has-success' } invalid={ this.state.validate.passwordState === 'has-danger' } onChange={(e)=>{this.onChange(e)}} id="newPasswordInput2" type="password"/>
                     <FormFeedback invalid>
