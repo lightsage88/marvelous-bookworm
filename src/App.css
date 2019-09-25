@@ -87,7 +87,7 @@ div.App {
   background: lightgoldenrodyellow;
 }
 
-.collapse.show button{
+.collapse div{
   margin:5vw;
 }
 
@@ -126,13 +126,12 @@ div.App {
 }
 
 #collectionDiv {
-  /* background: 
+  background: 
   linear-gradient(
     
     rgba(0, 0, 0, 0.6), 
     rgba(0, 0, 0, 0.6)
-  ), url('../../bookworm/src/assets/pictures/sheildHQ.jpg') no-repeat center; */
-  background: black;
+  ), url('/pictures/sheildHQ.jpg') no-repeat center;
   height: 100%;
   background-size: cover;
 }
@@ -202,6 +201,15 @@ div.App {
   border:solid;
   background: lightgoldenrodyellow;
   font-family: "ComicBookBoldItalic";
+}
+
+.modalImage {
+  width: 100%;
+}
+
+.modal-content {
+  background: lightgoldenrodyellow;
+  font-family: "ComicBookRegular";
 }
 
 #searchComponentDiv h1 {

@@ -34,6 +34,12 @@ class ModalGear extends React.Component {
         })
     }
 
+    amazonSearch = (string) => {
+        console.log(string);
+        window.open(`https://www.amazon.com/s?k=${string}`)
+
+    }
+
     render(){
         let descriptionOption;
         let imageOption;
@@ -58,7 +64,7 @@ class ModalGear extends React.Component {
             imageOption = ''
         } else {
             imageOption = <ModalBody>
-             <img src={`${this.props.event.thumbnail.path}.${this.props.event.thumbnail.extension}`} />
+             <img className="modalImage" src={`${this.props.event.thumbnail.path}.${this.props.event.thumbnail.extension}`} />
             </ModalBody>
         }
               
@@ -70,8 +76,8 @@ class ModalGear extends React.Component {
                             <ModalHeader toggle={this.toggle}>{this.props.event.title}</ModalHeader>
                             {descriptionOption}
                             <ModalFooter>
-                                <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-                                <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                                <Button color="primary" onClick={()=>{this.amazonSearch(this.props.event.title)}}>Shop For It!</Button>{' '}
+                               
                             </ModalFooter>
                             
                                 {imageOption}    
