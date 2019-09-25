@@ -253,6 +253,10 @@ div.App {
   font-family: "ComicBookRegular";
 }
 
+.navbar-brand {
+  color: white !important;
+}
+
 
 
 
