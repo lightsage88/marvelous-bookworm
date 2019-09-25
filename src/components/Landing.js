@@ -7,8 +7,13 @@ import styled from 'styled-components';
 export const Landing = (props) => {
     console.log(props);
     return (
-        <div>
+        <div id="landingDiv">
             <h1 id="landingH1">Welcome!!</h1>
+            <section id="landingDivSection">
+                <p>
+                    You've found your way to Marvelous Bookworm, a web app to help you learn more about your favorite Marvel Characters. For more information, visit the 'About' page.
+                </p>
+            </section>
         </div>
     )
 }

@@ -70,6 +70,12 @@ div.App {
   font-family: "ComicBookBoldItalic";
 }
 
+#aboutPic {
+  float: right;
+  width: auto;
+  max-width: 20vw;
+}
+
 #accountH2 {
   border: solid;
   background: lightgoldenrodyellow;
@@ -116,9 +122,9 @@ div.App {
     
     rgba(0, 0, 0, 0.6), 
     rgba(0, 0, 0, 0.6)
-  ), url('../../bookworm/src/assets/pictures/comicBackgrounds/purpleDots.png');
+  ), url('../../bookworm/src/assets/pictures/sheildHQ.jpg') no-repeat center;
   height: -webkit-fill-available;
-  background-size: contain;
+  background-size: cover;
 }
 
 #collectionH1 {
@@ -133,8 +139,62 @@ div.App {
   font-family: "ComicBookBoldItalic";
 }
 
-#searchComponentDiv h1 {
+#landingDiv {
+  background: 
+  linear-gradient(
+    
+    rgba(0, 0, 0, 0.6), 
+    rgba(0, 0, 0, 0.6)
+  ), url('../../bookworm/src/assets/pictures/comicBackgrounds/crop.jpeg') center;
+  height: 100vh;
+}
+
+#landingDivSection {
+  background: rgba(255,255,255, 0.9);
+    border: solid;
+    border-style: groove;
+    border-radius: 5vw;
+    position: relative;
+    /* top: 35%; */
+    padding: 3vw;
+    margin: auto 10vw;
+    top: 25vw;
+}
+
+#landingDivSection p {
+  font-family: "ComicBookRegular";
+}
+
+#loginDiv {
+  background: inherit;
+  height: 100vh;
+}
+
+#loginForm {
+ 
+  font-family:"ComicBookRegular";
   border: solid;
+    border-style: groove;
+    border-radius: 4vw;
+    margin: auto 5vw;
+    font-family: "ComicBookRegular";
+    height: auto;
+    background: rgba(25,10,10,0.9);
+    color: lightgoldenrodyellow;
+    padding: 5vw;
+}
+
+#loginForm input {
+  text-align:center;
+}
+
+#loginH2 {
+  border:solid;
+  background: lightgoldenrodyellow;
+  font-family: "ComicBookBoldItalic";
+}
+
+#searchComponentDiv h1 {
   background: lightgoldenrodyellow;
 }
 
@@ -172,9 +232,20 @@ div.App {
     background: grey;
 }
 
+#loaderMessage {
+  font-family: "ComicBookRegular";
+}
+
 .suggestionCardsH2 {
   font-family: "ComicBookItalic";
 }
+
+.navbar-nav {
+  font-family: "ComicBookRegular";
+}
+
+
+
 
 .dust {
   position: absolute;

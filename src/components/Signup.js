@@ -2,8 +2,10 @@ import React from 'react';
 import { Form, Button, FormGroup, Label, Input, FormFeedback, FormText, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import {API_BASE_URL} from '../config';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {attemptLogIn} from '../actions/index.js';
 
-class Signup extends React.Component  {
+export class Signup extends React.Component  {
     state ={
         validate: {}
     };
@@ -55,7 +57,6 @@ class Signup extends React.Component  {
 
 
         if(missingField || problem == true) {
-            console.log('thats fucked up');
             return;
         } else {
             axios({
@@ -75,7 +76,14 @@ class Signup extends React.Component  {
                 console.log(response);
                 if(response.status == 201) {
                     console.log('are you reeeddi for wurrrshiiiip?');
+                    this.props.dispatch(attemptLogIn(currentState.usernameInput, currentState.PasswordConfirm));
                 }
+            })
+            .then(()=>{
+                if(localStorage.getItem('authToken')) {
+                    console.log('bota entri');
+                    window.location.pathname = '/search'
+                }   
             })
             .catch(err =>{
                 console.error(err);
@@ -137,4 +145,4 @@ class Signup extends React.Component  {
     }
 }
 
-export default Signup;
+export default connect()(Signup);

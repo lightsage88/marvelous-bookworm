@@ -29,8 +29,7 @@ describe('<Login/>', ()=>{
     it('fires the clickSubmit method when someone presses the submit button', ()=>{
         const wrapper = mount(<Login dispatch={dispatchMock}/>);
         const onClickSpy = jest.spyOn(wrapper.instance(), "clickSubmit");
-        wrapper.find('button[type="submit"]').simulate('click');
-        wrapper.update();
+        wrapper.find('button#loginSubmitButton').simulate('click');
         expect(onClickSpy).toHaveBeenCalled();
     });
 

@@ -6,9 +6,11 @@ import {Account} from './Account';
 import {API_BASE_URL} from '../config';
 
 
+
 describe('<Account/>', ()=>{
     it('Renders w/o crashing', ()=> {
-        shallow(<Account/>);
+        shallow(<Account renderRedirect={jest.fn()}/>);
+        expect(1).toEqual(1);
     });
 
     // it('will tell the user if their passwords do not match', () => {
@@ -23,7 +25,7 @@ describe('<Account/>', ()=>{
     // })
 
     it('will validate successfully if the passwords match', () => {
-        const wrapper = shallow(<Account/>);
+        const wrapper = shallow(<Account renderRedirect={jest.fn()}/>);
         const onChangeSpy = jest.spyOn(wrapper.instance(), 'onChange');
         const onValidatePassword = jest.spyOn(wrapper.instance(), 'validatePassword');
         wrapper.find('#newPasswordInput2').simulate('change', {target: {value: 'Passwordpassword'}});
@@ -36,7 +38,7 @@ describe('<Account/>', ()=>{
     });
 
     it('will fire the commenceAccountUpdate method to talk with our backend about updating the password, when the button is pressed', ()=> {
-        const wrapper = shallow(<Account/>);
+        const wrapper = shallow(<Account renderRedirect={jest.fn()}/>);
         const onChangeSpy = jest.spyOn(wrapper.instance(), 'onChange');
         const commenceAccountUpdateSpy = jest.spyOn(wrapper.instance(), 'commenceAccountUpdate');
         const onValidatePassword = jest.spyOn(wrapper.instance(), 'validatePassword');

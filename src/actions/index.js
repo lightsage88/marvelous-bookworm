@@ -40,9 +40,6 @@ export const refreshCharacters = (data) => ({
 });
 
 
-
-
-
 export const attemptLogIn = (username, password) => dispatch => {
     axios({
         url:`${API_BASE_URL}/api/auth/login`,

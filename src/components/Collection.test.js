@@ -19,7 +19,7 @@ let characters = [
                     path: "xxx",
                     extension: "jpg"
                 },
-                description: "Sony fucks things up"
+                description: "Sony messes things up"
             }
         ]
     }
@@ -39,7 +39,7 @@ describe('<Collection/>', ()=>{
     //     const wrapper = shallow(<Collection characters={characters} dispatch={dispatch}/>);
     //     console.log(wrapper);
     //     wrapper.update();
-    //     expect(wrapper.find('#0-cardHeader').text()).toEqual('shit');
+    //     expect(wrapper.find('#0-cardHeader').text()).toEqual('something');
     // })
 
     // it('fires method to initiate deletion of character when you press the X button', () => {

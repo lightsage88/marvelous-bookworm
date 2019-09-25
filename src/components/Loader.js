@@ -21,7 +21,7 @@ function Loader(props) {
           loading={props.loading}
           position={"fixed"}
         />
-        <p>{props.loadingMessage}</p>
+        <p id="loaderMessage">{props.loadingMessage}</p>
       </div> 
             </div>
         )

@@ -69,6 +69,7 @@ export class Head extends React.Component {
       e.preventDefault();
       this.props.dispatch(attemptLogout());
       localStorage.clear();
+      window.location.pathname = '/';
     }
 
     render() {

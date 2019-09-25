@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Loader from './Loader';
+import { Form, Button, FormGroup, Label, Input, FormFeedback, FormText, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
 import axios from 'axios';
 
 import {attemptLogIn, attemptLoginSuccess} from '../actions/index.js';
@@ -9,7 +12,8 @@ export class Login extends Component {
     state={
         usernameFieldText: '',
         passwordFieldText: '',
-        message: ''
+        message: '',
+        loading: false
     };
 
     typingInField = (e, type) => {
@@ -37,19 +41,51 @@ export class Login extends Component {
         e.preventDefault();
         console.log('yo');
         this.props.dispatch(attemptLogIn(usernameChars, passwordChars));
+        this.setState({
+            loading: true,
+            loadingMessage: 'Logging you in...'
+        });
+        setTimeout(()=>{
+            if(localStorage.getItem('authToken')) {
+            console.log('bota entri');
+            this.setState({
+                loading: false,
+                loadingMessage: ''
+            });
+            window.location.pathname = '/search'
+        }   }, 3000);
         
     }
 
     render () {
-        console.log(this.props);
         return (
-            <React.Fragment>
-                <form>
-                    <input id="loginUsernameField" type="text" placeholder="Enter your username" onChange={(e)=> this.typingInField(e, 'usernameField')} />
-                    <input id="loginPasswordField" type="password" placeholder="Enter your password" onChange={(e)=> this.typingInField(e, 'passwordField')}/>
-                    <button id="loginSubmitButton" type="submit" onClick={(e)=> this.clickSubmit(e)}>LOGIN</button>
-                </form>
-            </React.Fragment>
+            
+            <div id="loginDiv">
+            {
+        this.state.loading == true ? 
+        <Loader loading={this.state.loading} loadingMessage={this.state.loadingMessage}/>
+        : 
+        ''
+      }
+            <h2 id="loginH2">LOGIN</h2>
+
+            <Form id="loginForm">
+            <FormGroup>
+                <Label for="loginUsernameField">USERNAME</Label>
+                <Input onChange={(e)=> this.typingInField(e, 'usernameField')} id="loginUsernameField" placeholder="Enter your username"/>
+            </FormGroup>
+
+            <FormGroup>
+                <Label for="loginPasswordField">PASSWORD</Label>
+                <Input type="password" onChange={(e)=> this.typingInField(e, 'passwordField')} id="loginPasswordField" placeholder="Enter your password"/>
+            </FormGroup> 
+
+            <Button id="loginSubmitButton" onClick={(e)=> this.clickSubmit(e)}>LOGIN</Button> 
+
+
+               
+            </Form>
+            </div>
         )
     }
    
