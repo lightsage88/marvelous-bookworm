@@ -1,5 +1,6 @@
 import React from 'react';
-import spideyLogo from '../../src/assets/pictures/spideyLogo.png';
+// import spideyLogo from "../pictures/spideyLogo.png";
+const picPath = process.env.PUBLIC_URL + '/pictures/';
 const About = () => {
     return (
         <div id="aboutDiv">
@@ -11,7 +12,7 @@ const About = () => {
                 Comic book characters frequently have spin-off series or collections of stories that focus on a particular
                 version of that character. 
                 <br/><br/>
-                <img id="aboutPic" src={spideyLogo} alt=''/>
+                <img id="aboutPic" src={`${picPath}spideyLogo.png`} alt=''/>
 
                 Some of them take place on parallel worlds or universes and are short. Others go on for quite a while.
                 If you have even a passing interest in the many characters who have donned
