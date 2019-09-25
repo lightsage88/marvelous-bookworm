@@ -232,7 +232,10 @@ class Collection extends Component {
             return <Card className="marvelCharacterCard" key={index} id={cardID}>
             <CardHeader className="marvelCharacterCardHeader">
                 <h2 className="marvelCharacterCardName">{character.name}</h2>
-                <Button className="marvelCharacterDeleteButton" onClick={(e)=>{this.deleteCharacterFromCollection(e, this.props.username, character.id, cardID, cardIndex )}} >X</Button>
+                <Button className="marvelCharacterDeleteButton" 
+                onClick={(e)=>{this.deleteCharacterFromCollection(e, this.props.username, character.id, cardID, cardIndex )}}>
+                X
+                </Button>
             </CardHeader>
             <img className="marvelCharacterCardMainImage" src={base64Flag + imageStr} />
 
@@ -243,11 +246,25 @@ class Collection extends Component {
                     {character.description}
                     </div> : ''}
                 </CardText>
-                <Button id={'toggler-' + index}>EVENTS</Button>    
+                    {character.events.length <= 0 ?
+                    ''
+                    :
+                    <Button id={'toggler-' + index}>EVENTS</Button>    
+
+                    }
             </CardBody>
-            <UncontrolledCollapse toggler={'#' + 'toggler-' + index}>
+                    {
+                        character.events.length <= 0 ?
+                    ''
+                    :
+                    <UncontrolledCollapse toggler={'#' + 'toggler-' + index}>
                 {eventModalGroup}
             </UncontrolledCollapse>
+
+                    }
+            {/* <UncontrolledCollapse toggler={'#' + 'toggler-' + index}>
+                {eventModalGroup}
+            </UncontrolledCollapse> */}
                    </Card>
         });
 

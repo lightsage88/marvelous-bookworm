@@ -82,6 +82,15 @@ div.App {
   font-family: "ComicBookBoldItalic";
 }
 
+.card {
+  font-family: "ComicBookRegular";
+  background: lightgoldenrodyellow;
+}
+
+.collapse.show button{
+  margin:5vw;
+}
+
 #signupDiv {
   background: url('../../bookworm/src/assets/pictures/comicBackgrounds/orangeDots.png');
   height: -webkit-fill-available;
@@ -123,7 +132,7 @@ div.App {
     rgba(0, 0, 0, 0.6), 
     rgba(0, 0, 0, 0.6)
   ), url('../../bookworm/src/assets/pictures/sheildHQ.jpg') no-repeat center;
-  height: -webkit-fill-available;
+  height: 100%;
   background-size: cover;
 }
 
