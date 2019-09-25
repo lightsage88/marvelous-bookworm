@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
-import marvelLogo from '../assets/pictures/marvelLogo.jpg';
+
 import {  Collapse,
     Navbar,
     NavbarToggler,

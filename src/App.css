@@ -20,7 +20,7 @@ body {
 /* import backgroundImage from '../assets/pictures/comicBackgrounds/blueDots.jpg'; */
 
 div.App {
-  background: url('../../bookworm/src/assets/pictures/comicBackgrounds/3QEQ4qb.jpg') center no-repeat;
+  background: url('/pictures/comicBackgrounds/3QEQ4qb.jpg') center no-repeat;
   background-size: cover;
 }
 
@@ -49,7 +49,7 @@ div.App {
   background: linear-gradient(
     rgba(0,0,0,0.6),
     rgba(0,0,0,0.6)
-  ), url('../../bookworm/src/assets/pictures/comicBackgrounds/blueDots.jpg');
+  ), url('/pictures/comicBackgrounds/blueDots.jpg');
   height: 100%;
   /* height: -webkit-fill-available; */
 }
@@ -92,7 +92,7 @@ div.App {
 }
 
 #signupDiv {
-  background: url('../../bookworm/src/assets/pictures/comicBackgrounds/orangeDots.png');
+  background: url('/pictures/comicBackgrounds/orangeDots.png');
   height: -webkit-fill-available;
 }
 
@@ -120,7 +120,7 @@ div.App {
       
       rgba(0, 0, 0, 0.6), 
       rgba(0, 0, 0, 0.6)
-    ), url('../../bookworm/src/assets/pictures/comicBackgrounds/11427.jpg');
+    ), url('/pictures/comicBackgrounds/11427.jpg');
   height: -webkit-fill-available;
   background-size: contain;
 }
@@ -154,7 +154,7 @@ div.App {
     
     rgba(0, 0, 0, 0.6), 
     rgba(0, 0, 0, 0.6)
-  ), url('../../bookworm/src/assets/pictures/comicBackgrounds/crop.jpeg') center;
+  ), url('/pictures/comicBackgrounds/crop.jpeg') center;
   height: 100vh;
 }
 
