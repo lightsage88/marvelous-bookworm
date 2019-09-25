@@ -126,12 +126,13 @@ div.App {
 }
 
 #collectionDiv {
-  background: 
+  /* background: 
   linear-gradient(
     
     rgba(0, 0, 0, 0.6), 
     rgba(0, 0, 0, 0.6)
-  ), url('../../bookworm/src/assets/pictures/sheildHQ.jpg') no-repeat center;
+  ), url('../../bookworm/src/assets/pictures/sheildHQ.jpg') no-repeat center; */
+  background: black;
   height: 100%;
   background-size: cover;
 }
