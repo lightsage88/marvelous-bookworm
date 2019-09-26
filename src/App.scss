@@ -1,0 +1,233 @@
+
+//IDS
+@import './scssFiles/id/aboutPic.scss';
+@import './scssFiles/id/aboutSection.scss';
+@import './scssFiles/id/accountForm.scss';
+@import './scssFiles/id/accountH2.scss';
+@import './scssFiles/id/aboutDiv.scss';
+@import './scssFiles/id/aboutDivH2.scss';
+@import './scssFiles/id/collectionDiv.scss';
+@import './scssFiles/id/collectionH1.scss';
+@import './scssFiles/id/landingDiv.scss';
+@import './scssFiles/id/landingDivSection.scss';
+@import './scssFiles/id/landingH1.scss';
+@import './scssFiles/id/loginDiv.scss';
+@import './scssFiles/id/loginForm.scss';
+@import './scssFiles/id/loginH2.scss';
+@import './scssFiles/id/searchComponentDiv.scss';
+@import './scssFiles/id/searchComponentInput.scss';
+@import './scssFiles/id/searchResultsUL.scss';
+@import './scssFiles/id/signupDiv.scss';
+@import './scssFiles/id/signupForm.scss';
+@import './scssFiles/id/signupH1.scss';
+
+//CLASSES
+@import './scssFiles/class/accountFormGroup.scss';
+@import './scssFiles/class/card.scss';
+@import './scssFiles/class/collapse.scss';
+@import './scssFiles/class/modal-content.scss';
+@import './scssFiles/class/modalImage.scss';
+@import './scssFiles/class/text-muted.scss';
+
+/* * {
+  box-sizing: border-box;
+} 
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+.content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #ddd;
+}  */
+
+/* import backgroundImage from '../assets/pictures/comicBackgrounds/blueDots.jpg'; */
+
+div.App {
+  background: url('/pictures/comicBackgrounds/3QEQ4qb.jpg') center no-repeat;
+  background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#loaderDiv {
+  position: fixed;
+    margin: auto 15%;
+    width: auto;
+    min-width: 70%;
+    top: 40%;
+    z-index: 4;
+    height: fit-content;
+    border: solid;
+    background: grey;
+}
+
+#loaderMessage {
+  font-family: "ComicBookRegular";
+}
+
+.suggestionCardsH2 {
+  font-family: "ComicBookItalic";
+}
+
+.navbar-nav {
+  font-family: "ComicBookRegular";
+}
+
+.navbar-brand {
+  color: white !important;
+}
+
+
+
+
+.dust {
+  position: absolute;
+  /* position: relative; */
+  width: 100%;
+}
+
+.App {
+  text-align: center;
+}
+
+/*TODO: get this ruleset immediatebelow to scss or something*/
+.searchComponentDivBlur {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+  filter: blur(10px);
+  z-index: 1
+}
+
+#characterCollectionUL {
+  padding: 5vw;
+}
+
+.marvelCharacterCard {
+  margin-bottom: 5vw;
+}
+
+.marvelCharacterCardMainImage {
+  width: 100%;
+}
+
+.marvelCharacterCardName {
+  display:inline-block;
+}
+
+.marvelCharacterCardHeader {
+  display: block;
+  text-align:justify;
+}
+
+.marvelCharacterDeleteButton {
+  display: inline;
+  float: right;
+}
+
+.searchComponentMessageSuccess {
+  position: fixed;
+  z-index: 2;
+  border: solid green;
+  background: rgba(36, 181, 53, 0.9);
+  height: auto;
+  padding: 12vw;
+  top: 40%;
+  
+  display: block;
+  width: 90%;
+  margin: auto 5%;
+}
+
+.searchComponentMessageFailure {
+  position: fixed;
+  z-index: 2;
+  border: solid red;
+  background: rgba(221, 11, 11, 0.9);
+  height: auto;
+  padding: 12vw;
+  top: 40%;
+  
+  display: block;
+  width: 90%;
+  margin: auto 5%;
+}
+
+.suggestionCards {
+  background-size: cover !important;
+    width: 80vw;
+    height: 50vw;
+    margin: 8vw auto;
+    box-shadow: black 0vw 1vw 1vw;
+}
+
+.suggestionCards:active {
+  box-shadow: none;
+  transform: translateY(5px);
+}
+
+.suggestionCardsH2 {
+  margin: auto;
+  color:whitesmoke;
+  text-shadow: .1vw .4vw black;
+  pointer-events:none;
+}
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

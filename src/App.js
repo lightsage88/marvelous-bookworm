@@ -4,7 +4,7 @@ import {AnimatedSwitch} from 'react-router-transition';
 import {connect} from 'react-redux';
 import {maintainState} from './actions';
 import styled from 'styled-components';
-import './App.css';
+import './App.scss';
 import Landing from './components/Landing';
 import Account from './components/Account';
 import Collection from './components/Collection';

@@ -214,8 +214,9 @@ export class Search extends Component {
 //todo: Make int a thunk type thing
     let value = e.target.value;
     clearTimeout(this.typingTimer);
-    this.typingTimer = setTimeout(()=>{this.doCharacterSearch(value)}, 450);
-    this.displayLoadingMessage();
+    this.typingTimer = setTimeout(()=>{this.doCharacterSearch(value)
+      this.displayLoadingMessage();
+    }, 1000);
   }
 
   doCharacterSearch = (value) => {
