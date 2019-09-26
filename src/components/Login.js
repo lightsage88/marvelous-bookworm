@@ -53,7 +53,19 @@ export class Login extends Component {
                 loadingMessage: ''
             });
             window.location.pathname = '/search'
-        }   }, 3000);
+        }  else {
+            this.setState({
+                loadingMessage: "There was an error with your login!"
+            });
+            setTimeout(()=>{
+               this.setState({
+                loading: false,
+                loadingMessage: ''
+               }) 
+            }, 1250);
+        } 
+    
+    }, 3000);
         
     }
 
@@ -79,13 +91,26 @@ export class Login extends Component {
                 <Label for="loginPasswordField">PASSWORD</Label>
                 <Input type="password" onChange={(e)=> this.typingInField(e, 'passwordField')} id="loginPasswordField" placeholder="Enter your password"/>
             </FormGroup> 
+            {
+                this.state.usernameFieldText == '' || this.state.passwordFieldText == '' ? 
+                <Button id="loginSubmitButton" color="danger" disabled>FILL FORM</Button>
+                :
+                <Button id="loginSubmitButton" color="info" onClick={(e)=> this.clickSubmit(e)}>LOGIN</Button> 
 
-            <Button id="loginSubmitButton" onClick={(e)=> this.clickSubmit(e)}>LOGIN</Button> 
+            }
 
 
                
             </Form>
+            <section id="loginSampleSection">
+                    <h2>Sample Login</h2>
+                    <strong>USERNAME:</strong>
+                    <p>test</p>
+                    <strong>PASSWORD:</strong>
+                    <p>passwordpassword</p>
+                </section>
             </div>
+               
         )
     }
    

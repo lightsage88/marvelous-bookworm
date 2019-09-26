@@ -3,7 +3,7 @@ import { Form, Button, FormGroup, Label, Input, FormFeedback, FormText, Modal, M
 import {API_BASE_URL} from '../config';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {attemptLogIn} from '../actions/index.js';
+import {attemptLogIn, checkForExistingUsername} from '../actions/index.js';
 
 export class Signup extends React.Component  {
     state ={
@@ -11,7 +11,7 @@ export class Signup extends React.Component  {
     };
     
     
-    onChange = (e) => {
+    onChange = (e, type) => {
         this.setState({
             [e.target.id]: e.target.value
         }, () => {
@@ -19,6 +19,12 @@ export class Signup extends React.Component  {
             this.validatePassword(this.state)
             }
         });
+        if(type==="usernameCheck"){
+            console.log('going to talk to backend');
+            this.props.dispatch(checkForExistingUsername(e.target.value));
+            //do an action that checks the DB for any Users with the given username.
+            //if one matches, send a response back and we can filter in a kind of validation message
+        }
     }
 
     validatePassword = (state) => {
@@ -120,7 +126,7 @@ export class Signup extends React.Component  {
 
             <FormGroup>
                 <Label for="usernameInput">USERNAME</Label>
-                <Input onChange={(e)=>{this.onChange(e)}} id="usernameInput" placeholder="totallyNotSpiderMan2019"/>
+                <Input onChange={(e)=>{this.onChange(e, 'usernameCheck')}} id="usernameInput" placeholder="totallyNotSpiderMan2019"/>
             </FormGroup>
 
             <FormGroup>
@@ -136,8 +142,21 @@ export class Signup extends React.Component  {
                 <FormFeedback invalid>Your passwords must match!</FormFeedback>
 
             </FormGroup>
+            {
+                this.state.PasswordConfirm == undefined || '' || 
+                this.state.PasswordInput == undefined || '' ||
+                this.state.firstNameInput == undefined || '' ||
+                this.state.lastNameInput == undefined || '' ||
+                this.state.usernameInput == undefined || '' ||
+                this.state.validate.passwordState === 'has-danger'
+                ?
+                <Button id="createAccountButton" disabled color="danger">FILL FORM!</Button> 
+                :
+                <Button id="createAccountButton" color="info" onClick={()=>{this.createAccount()}}>Create Account</Button> 
 
-            <Button id="createAccountButton" onClick={()=>{this.createAccount()}}>Create Account</Button> 
+
+            }
+
 
           </Form>
         </div>
