@@ -18,14 +18,6 @@ import axios from 'axios';
 
 
 
-const AppFooter = styled.footer`
-  position: absolute;
-  bottom: 0;
-  text-align: center;
-  width: -webkit-fill-available;
-
-`;
-
    const renderRedirect = () => {
         console.log('rerer');
         if(!localStorage.getItem('authToken')) {
@@ -68,9 +60,7 @@ export class App extends React.Component {
         <Route path="/account" render={(props) => <Account   {...this.props} renderRedirect={renderRedirect} />}/>
       </AnimatedSwitch>
 
-        <AppFooter className="footer mt-auto py-3">
-          This is a footer
-        </AppFooter>
+        
         </div>
         
       </Router>
