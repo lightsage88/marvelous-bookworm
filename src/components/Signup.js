@@ -3,15 +3,17 @@ import { Form, Button, FormGroup, Label, Input, FormFeedback, FormText, Modal, M
 import {API_BASE_URL} from '../config';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {attemptLogIn, checkForExistingUsername} from '../actions/index.js';
+import {attemptLogIn} from '../actions/index.js';
 
 export class Signup extends React.Component  {
     state ={
-        validate: {}
+        validate: {},
+        message: ''
     };
     
     
     onChange = (e, type) => {
+
         this.setState({
             [e.target.id]: e.target.value
         }, () => {
@@ -20,8 +22,44 @@ export class Signup extends React.Component  {
             }
         });
         if(type==="usernameCheck"){
-            console.log('going to talk to backend');
-            this.props.dispatch(checkForExistingUsername(e.target.value));
+            let value = e.target.value;
+            console.log('going to talk to backend' + value);
+            axios({
+                url: `${API_BASE_URL}/api/users/usernameCheck`,
+                method: "POST",
+                headers: {
+                    accept: 'application/json'
+                },
+                data: {
+                    usernameCandidate: value
+                }
+            })
+            .then(response => {
+                console.log('checkForExistingUsername action response');
+                console.log(response);
+                if(response.data.code == 422) {
+                    console.log('pepper is sad');
+                    this.setState({
+                        validate: {
+                            usernameState: 'unavailable'
+                        }
+                    })
+                } else {
+                    this.setState({
+                        validate: {
+                            usernameState: 'available'
+                        }
+                    })
+                }
+            })
+            .catch(err => {
+                console.log('we had an error');
+                console.log(err);
+                console.error(err);
+            })
+
+
+
             //do an action that checks the DB for any Users with the given username.
             //if one matches, send a response back and we can filter in a kind of validation message
         }
@@ -126,7 +164,9 @@ export class Signup extends React.Component  {
 
             <FormGroup>
                 <Label for="usernameInput">USERNAME</Label>
-                <Input onChange={(e)=>{this.onChange(e, 'usernameCheck')}} id="usernameInput" placeholder="totallyNotSpiderMan2019"/>
+                <Input valid={this.state.validate.usernameState === 'available'} invalid={this.state.validate.usernameState === 'unavailable'} onChange={(e)=>{this.onChange(e, 'usernameCheck')}} id="usernameInput" placeholder="totallyNotSpiderMan2019"/>
+                <FormFeedback invalid>Someone else already has this username.</FormFeedback>
+                <FormFeedback valid>Cool name, it suits you!</FormFeedback>
             </FormGroup>
 
             <FormGroup>
@@ -148,7 +188,8 @@ export class Signup extends React.Component  {
                 this.state.firstNameInput == undefined || '' ||
                 this.state.lastNameInput == undefined || '' ||
                 this.state.usernameInput == undefined || '' ||
-                this.state.validate.passwordState === 'has-danger'
+                this.state.validate.passwordState === 'has-danger' ||
+                this.state.validate.usernameState === 'unavailable'
                 ?
                 <Button id="createAccountButton" disabled color="danger">FILL FORM!</Button> 
                 :

@@ -150,22 +150,24 @@ export const getDetailedEventInfo = (username, charID) => dispatch => {
 }
 
 
-export const checkForExistingUsername = (usernameCandidate) => dispatch => {
-    axios({
-        url: `${API_BASE_URL}/api/users/usernameCheck`,
-        method: "POST",
-        headers: {
-            accept: 'application/json'
-        },
-        data: {
-            usernameCandidate
-        }
-    })
-    .then(response => {
-        console.log('checkForExistingUsername action response');
-        console.log(response)
-    })
-    .catch(err => {
-        console.error(err);
-    })
-}
+// export const checkForExistingUsername = (usernameCandidate) => dispatch => {
+//     axios({
+//         url: `${API_BASE_URL}/api/users/usernameCheck`,
+//         method: "POST",
+//         headers: {
+//             accept: 'application/json'
+//         },
+//         data: {
+//             usernameCandidate
+//         }
+//     })
+//     .then(response => {
+//         console.log('checkForExistingUsername action response');
+//         console.log(response)
+//     })
+//     .catch(err => {
+//         console.log('we had an error');
+//         console.log(err);
+//         console.error(err);
+//     })
+// }
