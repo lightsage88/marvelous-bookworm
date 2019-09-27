@@ -9,3 +9,10 @@
       color: lightgoldenrodyellow;
       margin: 5vw;
   }
+  
+  @media screen and (min-width: $tabletMinWidth) {
+      #signupForm {
+          width: 60%;
+          margin: auto;
+      }
+  }

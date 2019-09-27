@@ -1,20 +1,18 @@
-#searchResultsUL {
-    overflow-y: scroll;
-    height: 90vh;
-    margin-bottom: 0 !important;
-    padding: 0;
+#characterCollectionUL {
     background: inherit;
+    margin: 0;
+    padding: 5vw;
   }
 
 @media screen and (min-width: $tabletMinWidth) {
-    #searchResultsUL {
+    #characterCollectionUL {
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
 }
 
 @media screen and (min-width: $largeLaptopMinWidth) {
-    #searchResultsUL {
+    #characterCollectionUL {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }

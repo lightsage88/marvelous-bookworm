@@ -1,0 +1,24 @@
+.suggestionCards {
+    background-size: cover !important;
+      width: 80vw;
+      height: 50vw;
+      margin: 8vw auto;
+      box-shadow: black 0vw 1vw 1vw;
+  }
+  
+  .suggestionCards:active {
+    box-shadow: none;
+    transform: translateY(5px);
+  }
+
+@media screen and (min-width: $tabletMinWidth) {
+    .suggestionCards {
+        width: 35vw !important;
+    }
+}
+
+@media screen and (min-width: $largeLaptopMinWidth) {
+    .suggestionCards {
+        width: 20vw !important;
+    }
+}

@@ -5,6 +5,6 @@
       rgba(0, 0, 0, 0.6), 
       rgba(0, 0, 0, 0.6)
     ), url('/pictures/sheildHQ.jpg') no-repeat center;
-    height: 100%;
+    height: -webkit-fill-available;
     background-size: cover;
   }

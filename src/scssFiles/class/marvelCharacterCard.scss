@@ -1,0 +1,9 @@
+.marvelCharacterCard {
+    margin-bottom: 5vw;
+}
+
+@media screen and (min-width: $tabletMinWidth) {
+    .marvelCharacterCard {
+        margin: 3vw;
+    }
+}

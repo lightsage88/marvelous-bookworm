@@ -8,3 +8,8 @@
       font-family:"ComicBookRegular";
   }
   
+@media screen and (min-width: $tabletMinWidth) {
+    #searchComponentInput {
+        font-size: 3.5vw;
+    }
+}

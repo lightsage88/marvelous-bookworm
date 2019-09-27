@@ -7,3 +7,10 @@
       color: white;
       font-family: "ComicBookRegular";
   }
+
+  @media screen and (min-width: $tabletMinWidth) {
+    #accountForm {
+      width: 60%;
+      margin: auto;
+    }
+  }

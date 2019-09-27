@@ -24,6 +24,7 @@ export class Signup extends React.Component  {
         if(type==="usernameCheck"){
             let value = e.target.value;
             console.log('going to talk to backend' + value);
+            if(value !== '') {
             axios({
                 url: `${API_BASE_URL}/api/users/usernameCheck`,
                 method: "POST",
@@ -44,6 +45,8 @@ export class Signup extends React.Component  {
                             usernameState: 'unavailable'
                         }
                     })
+
+             
                 } else {
                     this.setState({
                         validate: {
@@ -57,6 +60,14 @@ export class Signup extends React.Component  {
                 console.log(err);
                 console.error(err);
             })
+
+        } else {
+            this.setState({
+                validate: {
+                    usernameState: ''
+                }
+            })
+        }
 
 
 
@@ -87,13 +98,15 @@ export class Signup extends React.Component  {
     }
 
     createAccount = () => {
+        console.log('create account running');
         let problem;
         let currentState = this.state;
         const requiredFields = ['firstNameInput', 'lastNameInput', 'usernameInput', 'PasswordInput', 'PasswordConfirm'];
 
         const missingField = requiredFields.find(field => !(field in currentState) || (field in currentState) == undefined);
 
-        Object.entries(currentState).forEach(array => {
+        Object.entries(requiredFields in currentState).forEach(array => {
+            console.log(array);
             if(array[1] == '') {
                 problem = true;
             }
@@ -101,6 +114,8 @@ export class Signup extends React.Component  {
 
 
         if(missingField || problem == true) {
+            console.log('ein problem');
+            console.log(missingField);
             return;
         } else {
             axios({
@@ -121,6 +136,7 @@ export class Signup extends React.Component  {
                 if(response.status == 201) {
                     console.log('are you reeeddi for wurrrshiiiip?');
                     this.props.dispatch(attemptLogIn(currentState.usernameInput, currentState.PasswordConfirm));
+                    window.path = '/search';
                 }
             })
             .then(()=>{

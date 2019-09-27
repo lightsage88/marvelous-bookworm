@@ -1,4 +1,4 @@
-
+@import './scssFiles/values.scss';
 //IDS
 @import './scssFiles/id/aboutPic.scss';
 @import './scssFiles/id/aboutSection.scss';
@@ -6,6 +6,7 @@
 @import './scssFiles/id/accountH2.scss';
 @import './scssFiles/id/aboutDiv.scss';
 @import './scssFiles/id/aboutDivH2.scss';
+@import './scssFiles/id/characterCollectionUL.scss';
 @import './scssFiles/id/collectionDiv.scss';
 @import './scssFiles/id/collectionH1.scss';
 @import './scssFiles/id/landingDiv.scss';
@@ -26,8 +27,10 @@
 @import './scssFiles/class/accountFormGroup.scss';
 @import './scssFiles/class/card.scss';
 @import './scssFiles/class/collapse.scss';
+@import './scssFiles/class/marvelCharacterCard.scss';
 @import './scssFiles/class/modal-content.scss';
 @import './scssFiles/class/modalImage.scss';
+@import './scssFiles/class/suggestionCards.scss';
 @import './scssFiles/class/text-muted.scss';
 
 /* * {
@@ -130,9 +133,7 @@ div.App {
   z-index: 1
 }
 
-#characterCollectionUL {
-  padding: 5vw;
-}
+
 
 .marvelCharacterCard {
   margin-bottom: 5vw;
@@ -184,18 +185,7 @@ div.App {
   margin: auto 5%;
 }
 
-.suggestionCards {
-  background-size: cover !important;
-    width: 80vw;
-    height: 50vw;
-    margin: 8vw auto;
-    box-shadow: black 0vw 1vw 1vw;
-}
 
-.suggestionCards:active {
-  box-shadow: none;
-  transform: translateY(5px);
-}
 
 .suggestionCardsH2 {
   margin: auto;
