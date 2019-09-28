@@ -65,7 +65,7 @@ export class Login extends Component {
             }, 1250);
         } 
     
-    }, 3000);
+    }, 7000);
         
     }
 
