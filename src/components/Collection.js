@@ -8,7 +8,7 @@ import {Redirect} from 'react-router-dom';
 
 
 
-import { Card, Button, CardHeader, CardFooter, CardBody,
+import { Card, Button, CardHeader, Collapse, CardFooter, CardBody,
     CardTitle, CardText, UncontrolledCollapse, Modal, ModalHeader, ModalBody, ModalFooter  
 } from 'reactstrap';
 import ModalGear from './ModalGear';
@@ -29,9 +29,12 @@ var chance = new Chance();
 // var  = chance.string();
 
 class Collection extends Component {
-    state = {
-        modal: false
-    };
+    constructor(props){
+    super(props)
+   
+    this.toggle = this.toggle.bind(this);
+    this.state = { collapse: false };
+}
 
 
 
@@ -71,10 +74,12 @@ class Collection extends Component {
 
     
 
-    toggle = () => {
-       this.setState({
-           modal: !this.state.modal
-       })
+    toggle = (index) => {
+        console.log('toggling');
+        
+       this.setState(state=>({collapse: {
+           [index]:!state.collapse.index
+       } }))
     }
 
     componentDidMount = () => {
@@ -249,7 +254,7 @@ class Collection extends Component {
                     {character.events.length <= 0 ?
                     ''
                     :
-                    <Button id={'toggler-' + index}>EVENTS</Button>    
+                    <Button onClick={()=>{this.toggle(index)}} id={'toggler-' + index}>EVENTS</Button>    
 
                     }
             </CardBody>
@@ -257,9 +262,9 @@ class Collection extends Component {
                         character.events.length <= 0 ?
                     ''
                     :
-                    <UncontrolledCollapse toggler={'#' + 'toggler-' + index}>
+                    <Collapse isOpen={this.state.collapse[index]}>
                 {eventModalGroup}
-            </UncontrolledCollapse>
+            </Collapse>
 
                     }
             {/* <UncontrolledCollapse toggler={'#' + 'toggler-' + index}>
