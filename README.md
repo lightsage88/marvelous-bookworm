@@ -17,26 +17,40 @@ I like comic books and the Marvel Cinematic Universe. I thought a tool that woul
 ## Screenshots
 Login Screen/Landing Page:
 
-![login fullscreenScreen](public/screenshots/loginFullscreen.png)
+Fullscreen:![login fullscreenScreen](public/screenshots/loginFullscreen.png)
 
-![login mobile](public/screenshots/loginMobile.png)
+Mobile:![login mobile](public/screenshots/loginMobile.png)
 
 
 About Page:
 
-![about fullscreen](public/screenshots/aboutFullscreen.png)
+Fullscreen:![about fullscreen](public/screenshots/aboutFullscreen.png)
 
-![about mobile](public/screenshots/aboutMobile.png)
+Mobile:![about mobile](public/screenshots/aboutMobile.png)
 
 Signup Page 
 
-![signup fullscreen](public/screenshots/signupFullscreen.png)
-![signup mobile](public/screenshots/signupMobile.png)
+Fullscreen:![signup fullscreen](public/screenshots/signupFullscreen.png)
+Mobile:![signup mobile](public/screenshots/signupMobile.png)
 
 Search Page
 
-![search fullscreen](public/screenshots/searchFullscreen.png)
-![search mobile](public/screenshots/searchMobile.png)
+Fullscreen:![search fullscreen](public/screenshots/searchFullscreen.png)
+Mobile:![search mobile](public/screenshots/searchMobile.png)
+
+Collection Page
+
+Fullscreen:![collection fullscreen](public/screenshots/collectionFullscreen.png)
+Mobile:![collection mobile](public/screenshots/collectionMobile.png)
+
+Collection with Modal
+
+Fullscreen: ![collection modal fullscreen](public/screenshots/collectionModalFullscreen.png)
+Mobile:![collection modal mobile](public/screenshots/collectionModalMobile.png)
+
+Account Page
+Fullscreen: ![account fullscreen](public/screenshots/accountFullscreen.png)
+Mobile: ![account mobile](public/screenshots/accountMobile.png)
 
 
 
