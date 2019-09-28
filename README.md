@@ -17,7 +17,28 @@ I like comic books and the Marvel Cinematic Universe. I thought a tool that woul
 ## Screenshots
 Login Screen/Landing Page:
 
-![login fullscreenScreen](screenshots/loginFullscreen.png)
+![login fullscreenScreen](public/screenshots/loginFullscreen.png)
+
+![login mobile](public/screenshots/loginMobile.png)
+
+
+About Page:
+
+![about fullscreen](public/screenshots/aboutFullscreen.png)
+
+![about mobile](public/screenshots/aboutMobile.png)
+
+Signup Page 
+
+![signup fullscreen](public/screenshots/signupFullscreen.png)
+![signup mobile](public/screenshots/signupMobile.png)
+
+Search Page
+
+![search fullscreen](public/screenshots/searchFullscreen.png)
+![search mobile](public/screenshots/searchMobile.png)
+
+
 
 <!-- About:
 
