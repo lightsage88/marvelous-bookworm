@@ -1,68 +1,96 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- # book-thing.io
 
-## Available Scripts
+Initial wireframes:
 
-In the project directory, you can run:
+https://wireframe.cc/x0a8I9
 
-### `npm start`
+https://wireframe.cc/6oVXTU -->
+# Marvelous Bookworm
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A web-application that allows users to create collections of their favorite Marvel Comics characters. Lists will present information in cards that give information about the character, if available, and a collection of links for the character's series that allow the user to potentially buy them.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Motivation
 
-### `npm test`
+I like comic books and the Marvel Cinematic Universe. I thought a tool that would help people see where certain characters came from and how they've developed would be useful for newcomers to these characters and comic-lovers alike.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Screenshots
+Login Screen/Landing Page:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![login fullscreenScreen](screenshots/loginFullscreen.png)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+<!-- About:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![about](screenshots/about.png)
 
-### `npm run eject`
+Library:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![library](screenshots/library.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Recommendations:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![recommendations](screenshots/recommendations.png) -->
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Environment Setup
 
-## Learn More
+1. You'll need to clone <INSERT LINK> and run 
+```
+npm install
+```
+then
+```
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Do the same for this package.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Open up a window at localhost:8000
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
+## Running the tests
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+To run all tests, run
+```
+npm test
+```
 
-### Making a Progressive Web App
+## Built With
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### Front-End
+* React
+* Redux
+* React-Router
+* Sass/SCSS
 
-### Advanced Configuration
+### Back-End
+* MongoDB
+* Express
+* Node
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Testing
+* Mocha
+* Chai
+* Chai-http
+* Jest
+* Enzyme
 
-### Deployment
+## Features
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+* Create a list of characters
+* See comic book series belonging to the characters you've chosen
+* Use links to potentially buy series you're interested in
 
-### `npm run build` fails to minify
+## Running Project Link
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [Live](https://infinite-journey-91193.herokuapp.com/)
+
+## Authors
+
+* **Adrian Rosales** - ** - Fullstack Web Development
+
+
+## Acknowledgments
+
+* **Starline** - ** - For the use of their art for the 'Search' page.
+- [Art](https://www.freepik.com/free-photos-vectors/background")
