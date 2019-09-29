@@ -104,11 +104,24 @@ export class Search extends Component {
     .catch(err => {
       console.error(err);
       console.log(err.error);
+      this.displayErrorMessage();
       console.log(err);
       
       
     });
    }
+  }
+
+  displayErrorMessage = () => {
+    this.setState({
+      loadingMessage: "There was some kind of error"
+    });
+    setTimeout(()=>{
+      this.setState({
+        loadingMessage: "",
+        loading: false
+      })
+    }, 2000);
   }
 
   displayLoadingMessage = () => {
