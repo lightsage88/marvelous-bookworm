@@ -70,8 +70,8 @@ class ModalGear extends React.Component {
               
         
         return (
-            <div>
-             <Button  id={this.props.key} color="danger" onClick={()=>{this.toggle()}}>{this.props.event.title}</Button>
+            <div className="modalGearDivClass">
+             <Button  className="comicSeriesButton" id={this.props.key} color="danger" onClick={()=>{this.toggle()}}>{this.props.event.title}</Button>
                         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                             <ModalHeader toggle={this.toggle}>{this.props.event.title}</ModalHeader>
                             {descriptionOption}

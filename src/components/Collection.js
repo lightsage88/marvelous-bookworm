@@ -193,21 +193,13 @@ modalMagic = (index, close) => {
               for (let i = 0; i < canvasCount; i++) {
                 let c = this.newCanvasFromImageData(imageDataArray[i], canvas.width, canvas.height);
                 c.classList.add("dust");
-                // $(".wrapper").append(c);
-                        //MAY NEED TO APPEND TO CARDID Variable???
-                // $(".marvelCharacterCard").prepend(c);
+              
                 $(".marvelCharacterCard")[cardIndex].append(c);
 
                 
 
               }
 
-            //clear all children except the canvas == Will e.target.children work??? we'll see!
-            // console.log(document.getElementById(cardID));
-            // document.getElementById('characterCollectionUL').children.not(".dust").fadeOut(3500);
-            // $('#characterCollectionUL').children().not(".dust").fadeOut(3500);
-
-            // $('.marvelCharacterCard').children().not(".dust").fadeOut(3500);
 
 
             $(".dust").each( function(index){
@@ -280,17 +272,15 @@ modalMagic = (index, close) => {
                     ''
                     :
                     <React.Fragment>
-                    <Button onClick={()=>{this.toggle(index)}} id={'toggler-' + index}>EVENTS</Button>    
                     
-                        <Button onClick={()=>{this.modalMagic(index)}}>get it</Button>
+                        <Button onClick={()=>{this.modalMagic(index)}}>Series</Button>
                         <Modal isOpen={this.state.modal[index]}>
-                        <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+                        <ModalHeader toggle={()=>{this.modalMagic(index, 'false')}}>Series featuring {character.name}</ModalHeader>
           <ModalBody>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          {eventModalGroup}
           </ModalBody>
           <ModalFooter></ModalFooter>
-            <Button color="primary" onClick={()=>{this.modalMagic(index, 'false')}}>Do Something</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+            
                         </Modal>
                         </React.Fragment>
 
@@ -305,9 +295,7 @@ modalMagic = (index, close) => {
             </Collapse>
 
                     }
-            {/* <UncontrolledCollapse toggler={'#' + 'toggler-' + index}>
-                {eventModalGroup}
-            </UncontrolledCollapse> */}
+           
                    </Card>
         });
 
