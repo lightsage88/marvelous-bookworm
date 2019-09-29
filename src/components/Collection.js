@@ -33,10 +33,35 @@ class Collection extends Component {
     super(props)
    
     this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false };
+    this.state = { collapse: false, modal: false };
 }
 
 
+modalMagic = (index, close) => {
+    console.log(index)
+    close === 'false' ?
+    this.setState(state=>({
+        modal: {
+            [index]: false
+        }
+    })
+    )
+    :
+
+    this.setState(state=>({
+        modal: {
+            [index]: !state.modal.index
+        }
+    })
+    )
+    
+   
+}
+
+
+// this.setState(state=>({collapse: {
+//     [index]:!state.collapse.index
+// } }))
 
     weightedRandomDistrib = (peak)  => {
         var prob = [], seq = [];
@@ -254,7 +279,20 @@ class Collection extends Component {
                     {character.events.length <= 0 ?
                     ''
                     :
+                    <React.Fragment>
                     <Button onClick={()=>{this.toggle(index)}} id={'toggler-' + index}>EVENTS</Button>    
+                    
+                        <Button onClick={()=>{this.modalMagic(index)}}>get it</Button>
+                        <Modal isOpen={this.state.modal[index]}>
+                        <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalBody>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </ModalBody>
+          <ModalFooter></ModalFooter>
+            <Button color="primary" onClick={()=>{this.modalMagic(index, 'false')}}>Do Something</Button>{' '}
+            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                        </Modal>
+                        </React.Fragment>
 
                     }
             </CardBody>
