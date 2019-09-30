@@ -35,7 +35,6 @@ class ModalGear extends React.Component {
     }
 
     amazonSearch = (string) => {
-        console.log(string);
         window.open(`https://www.amazon.com/s?k=${string}`)
 
     }

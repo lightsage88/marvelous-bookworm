@@ -19,9 +19,7 @@ import axios from 'axios';
 
 
    const renderRedirect = () => {
-        console.log('rerer');
         if(!localStorage.getItem('authToken')) {
-            console.log('bota fuori');
             return <Redirect to="/" />
         }   
     }

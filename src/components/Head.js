@@ -46,12 +46,10 @@ export class Head extends React.Component {
         this.setState(prevState =>({
           loggedIn: false
         }))
-        console.log('goloso');
       }
     }
 
     componentDidUpdate(prevProps) {
-      console.log(this.props);
       if(this.props.loggedIn !== prevProps.loggedIn) {
         this.setState(prevState=>({
           loggedIn: this.props.loggedIn

@@ -38,7 +38,6 @@ class Collection extends Component {
 
 
 modalMagic = (index, close) => {
-    console.log(index)
     close === 'false' ?
     this.setState(state=>({
         modal: {
@@ -100,7 +99,6 @@ modalMagic = (index, close) => {
     
 
     toggle = (index) => {
-        console.log('toggling');
         
        this.setState(state=>({collapse: {
            [index]:!state.collapse.index
@@ -108,7 +106,6 @@ modalMagic = (index, close) => {
     }
 
     componentDidMount = () => {
-        console.log('sdfsdfsdfsdf');
         this.props.dispatch(refreshStateWithToken(localStorage.getItem('authToken')));
 
     }
@@ -122,17 +119,12 @@ modalMagic = (index, close) => {
         return window.btoa(binary);
     };
 
-    characterEvents = (data) => {
-        console.log(data.name);
-        console.log(data.events);
-    }
+   
 
     deleteCharacterFromCollection = (e, username, characterID, cardID, cardIndex) => {
         imageDataArray = [];
 
         e.preventDefault();
-        console.log('we are deleting ' + characterID);
-        console.log(cardID);
 
         html2canvas($('.marvelCharacterCard')[cardIndex]).then(canvas => {
 
@@ -219,16 +211,12 @@ modalMagic = (index, close) => {
     }
 
     renderRedirect = () => {
-        console.log('rerer');
         if(!localStorage.getItem('authToken')) {
-            console.log('bota fuori');
             return <Redirect to="/" />
         }   
     }
 
     render() {
-        console.log(this.props);
-        console.log(this.state);
        
 
         const charactersInCollection = (this.props.characters).map((character, index) => {

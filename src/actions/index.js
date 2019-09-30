@@ -76,7 +76,6 @@ export const refreshStateWithToken = (token) => dispatch => {
         }
     })
     .then( response => {
-         console.log(response);
         dispatch(refreshState(response.data));
     })
     .catch(err => {
@@ -108,7 +107,6 @@ export const deleteCharacterFromDB = (username, charID) => dispatch => {
         }
     })
     .then( response => {
-        console.log(response);
         dispatch(deleteCharacter(charID))
     })
     .catch(err => {
@@ -138,8 +136,6 @@ export const getDetailedEventInfo = (username, charID) => dispatch => {
         }
     })
     .then(response => {
-        console.log('gophers are out');
-        console.log(response.data);
         dispatch(refreshCharacters(response.data));
         return response
         
@@ -150,24 +146,3 @@ export const getDetailedEventInfo = (username, charID) => dispatch => {
 }
 
 
-// export const checkForExistingUsername = (usernameCandidate) => dispatch => {
-//     axios({
-//         url: `${API_BASE_URL}/api/users/usernameCheck`,
-//         method: "POST",
-//         headers: {
-//             accept: 'application/json'
-//         },
-//         data: {
-//             usernameCandidate
-//         }
-//     })
-//     .then(response => {
-//         console.log('checkForExistingUsername action response');
-//         console.log(response)
-//     })
-//     .catch(err => {
-//         console.log('we had an error');
-//         console.log(err);
-//         console.error(err);
-//     })
-// }

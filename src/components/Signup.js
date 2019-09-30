@@ -23,7 +23,6 @@ export class Signup extends React.Component  {
         });
         if(type==="usernameCheck"){
             let value = e.target.value;
-            console.log('going to talk to backend' + value);
             if(value !== '') {
             axios({
                 url: `${API_BASE_URL}/api/users/usernameCheck`,
@@ -36,10 +35,7 @@ export class Signup extends React.Component  {
                 }
             })
             .then(response => {
-                console.log('checkForExistingUsername action response');
-                console.log(response);
                 if(response.data.code == 422) {
-                    console.log('pepper is sad');
                     this.setState({
                         validate: {
                             usernameState: 'unavailable'
@@ -56,8 +52,6 @@ export class Signup extends React.Component  {
                 }
             })
             .catch(err => {
-                console.log('we had an error');
-                console.log(err);
                 console.error(err);
             })
 
@@ -98,7 +92,6 @@ export class Signup extends React.Component  {
     }
 
     createAccount = () => {
-        console.log('create account running');
         let problem;
         let currentState = this.state;
         const requiredFields = ['firstNameInput', 'lastNameInput', 'usernameInput', 'PasswordInput', 'PasswordConfirm'];
@@ -106,7 +99,6 @@ export class Signup extends React.Component  {
         const missingField = requiredFields.find(field => !(field in currentState) || (field in currentState) == undefined);
 
         Object.entries(requiredFields in currentState).forEach(array => {
-            console.log(array);
             if(array[1] == '') {
                 problem = true;
             }
@@ -114,8 +106,6 @@ export class Signup extends React.Component  {
 
 
         if(missingField || problem == true) {
-            console.log('ein problem');
-            console.log(missingField);
             return;
         } else {
             axios({
@@ -132,16 +122,13 @@ export class Signup extends React.Component  {
                 }
             })
             .then(response => {
-                console.log(response);
                 if(response.status == 201) {
-                    console.log('are you reeeddi for wurrrshiiiip?');
                     this.props.dispatch(attemptLogIn(currentState.usernameInput, currentState.PasswordConfirm));
                     window.path = '/search';
                 }
             })
             .then(()=>{
                 if(localStorage.getItem('authToken')) {
-                    console.log('bota entri');
                     window.location.pathname = '/search'
                 }   
             })

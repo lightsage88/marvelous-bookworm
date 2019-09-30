@@ -51,14 +51,11 @@ export class Search extends Component {
 
   onClick = (index) => {
     let stop;
-    console.log(this.props);
-    console.log(this.state);
 
     this.props.characters.forEach(element => {
       if(element.id == this.state.suggestions[index].id) {
         stop = true;
       } else {
-        console.log('meh');
       }
     })
 
@@ -84,28 +81,13 @@ export class Search extends Component {
       }
     })
     .then(response => { 
-      console.log(this.state.suggestions[index]);
-      // this.handleCharacterAddResponse(response, index);
    
-      console.log('getting event stuff')
       this.eventRetrieval(index);
-      // this.props.dispatch(getDetailedEventInfo(this.props.username ,this.state.suggestions[index].id))
-      // return response
     })
-    // .then(response => {
-
-    //   this.handleCharacterAddResponse(response, index);
-
-    // })
-    // .then(()=> {
-    //   //Need to save the new event per each character
-    //   this.props.dispatch(refreshStateWithToken(localStorage.getItem('authToken')));
-    // })
+    
     .catch(err => {
       console.error(err);
-      console.log(err.error);
       this.displayErrorMessage();
-      console.log(err);
       
       
     });
@@ -145,16 +127,11 @@ export class Search extends Component {
       }
   })
   .then(response => {
-      console.log('gophers are out');
-      console.log(response.data);
       this.props.dispatch(refreshCharacters(response.data));
-      console.log(response)
       return response
       
   })
   .then(_response => {
-    console.log(_response);
-    console.log('should kill the t');
     clearInterval(this.t);
     this.handleCharacterAddResponse(_response, index)
   })
@@ -164,9 +141,6 @@ export class Search extends Component {
     
   }
 
-  waitForTapToCloseMessage = () => {
-    console.log('tapp tapp');
-  }
 
   handleCharacterAddResponse = (response, index, fail) => {
     this.setState({
@@ -175,8 +149,6 @@ export class Search extends Component {
     })
     let searchComponentDiv = document.getElementById('searchComponentDiv');
     let searchComponentMessage = document.getElementById('searchComponentMessage');
-    console.log('hcar running');
-    console.log(response);
     if(fail == "alreadyHave") {
       this.setState(prevState=> ({
         message: "You already have this character!",
@@ -186,7 +158,6 @@ export class Search extends Component {
       searchComponentMessage.classList.add('searchComponentMessageFailure');
 
       setTimeout(()=>{
-      console.log('hottudoggo');
       this.setState(prevState=> ({
         message: '',
         loading: false
@@ -202,8 +173,6 @@ export class Search extends Component {
         message: "Character Added!",
         loading: false
       }));
-      console.log(this.state.suggestions[index]);
-      console.log(this.state.suggestions[index].id);
 
 
      
@@ -211,7 +180,6 @@ export class Search extends Component {
       searchComponentMessage.classList.add('searchComponentMessageSuccess');
 
       setTimeout(()=>{
-      console.log('hanbaga');
       this.setState(prevState=> ({
         message: ''
       }));
@@ -233,7 +201,6 @@ export class Search extends Component {
   }
 
   doCharacterSearch = (value) => {
-    console.log('we are doing the character serach');
     this.setState({
       value
     });
@@ -273,19 +240,7 @@ export class Search extends Component {
   }
 
   render () {
-
-    
-  console.log(this.props);
-  // if(this.state.suggestions.length > 0) {
-  //   clearInterval(this.t);
-  //   this.setState({
-  //     loading: false
-  //   })
-  // }
-
-   
   
-   
     const {value, suggestions} = this.state;
 
     const inputProps = {

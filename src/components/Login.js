@@ -22,7 +22,6 @@ export class Login extends Component {
        
         fieldContent = e.target.value;
         if(type == "usernameField") {
-            console.log('setting usernameFieldText');
             this.setState(prevState =>({
                 usernameFieldText: fieldContent
             }))
@@ -39,7 +38,6 @@ export class Login extends Component {
         passwordChars = this.state.passwordFieldText;
 
         e.preventDefault();
-        console.log('yo');
         this.props.dispatch(attemptLogIn(usernameChars, passwordChars));
         this.setState({
             loading: true,
@@ -47,7 +45,6 @@ export class Login extends Component {
         });
         setTimeout(()=>{
             if(localStorage.getItem('authToken')) {
-            console.log('bota entri');
             this.setState({
                 loading: false,
                 loadingMessage: ''

@@ -33,7 +33,6 @@ export class Account extends React.Component {
        
          
            if(state.newPasswordInput1 == state.newPasswordInput2){
-               console.log('lopo');
                validate.passwordState = 'has-success';
                validate.buttonActive = true;
             } else {
@@ -70,7 +69,6 @@ export class Account extends React.Component {
             }
         })
         .then(response => {
-            console.log(response);
             if(response.data.code == 422 && response.data.reason == "ValidationError") {
                 this.showError('ValidationError')
             }

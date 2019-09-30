@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 
 export const Landing = (props) => {
-    console.log(props);
     return (
         <div id="landingDiv">
             <h1 id="landingH1">Welcome!!</h1>

@@ -47,33 +47,11 @@ export const bookwormReducer = (state=initialState, action) => {
     else if (action.type === actions.MAINTAIN_STATE) {
         return state;
     }
-    // else if(action.type === actions.ADD_EVENTS_TO_CHARACTER) {
-    //     console.log('gogogogogogo');
-    //     console.log(String(action.charID))
-    //     let newCharacterArray = state.user.characters;
-    //     console.log(newCharacterArray);
-    //     let eventFilledData = action.payload;
-    //     console.log(eventFilledData);
-    //     newCharacterArray.forEach(char => {
-    //         if(char.id == action.charID) {
-    //             char.events = action.payload
-    //         }
-    //     })
-
-    //     return Object.assign({}, state, {
-    //         user: {...state.user,
-    //             characters: newCharacterArray
-    //         }
-    //     })
-
-    // }
+    
     else if (action.type === actions.DELETE_CHARACTER) {
-        console.log('shrimp sandwich');
-        console.log('we need to get the state.user.characters and make a new version of it filtering out anything that has the action.charID');
         let newCharacterArray = state.user.characters.filter(char => {
             return String(char.id) !== String(action.charID)
         })
-        console.log(newCharacterArray);
 
         return Object.assign({}, state, {
             user: {
@@ -81,31 +59,7 @@ export const bookwormReducer = (state=initialState, action) => {
                 characters: newCharacterArray
             }
         })
-    // } else if (action.type === actions.ENHANCE_EVENT_ARRAY){
-    //     console.log('fogfogfog');
-    //     console.log(action.charID);
-    //     let index = state.user.characters.findIndex((element) => {
-    //         return String(element.id) === String(action.charID);
-    //     });
-    //     console.log(index);
-    //     let revisedCharacter = state.user.characters.find((element) => {
-    //         return String(element.id) === String(action.charID);
-    //     });
-        
-    //     revisedCharacter.events = action.payload;
-    //     console.log(revisedCharacter);
-    //     let newCharacterArray = state.user.characters;
-    //     newCharacterArray[index] = revisedCharacter;
-
-    //     return Object.assign({}, state, {
-    //         user: {
-    //             ...state.user,
-    //             characters: newCharacterArray
-    //         }
-    //     });
-
-        
-    // }
+    
     }
     return state;
 };
